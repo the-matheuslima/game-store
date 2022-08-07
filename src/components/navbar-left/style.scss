@@ -1,0 +1,31 @@
+@use "../../scss/index" as *;
+
+.navbar-left {
+    line-height: 3rem;
+    position: relative;
+    width: 4%;
+    box-shadow: 3px 7px 15px 0px $a2-hex;
+    z-index: 10;
+    min-height: 100vh;
+
+    &__list {
+        position: fixed;
+        z-index: 10;
+        height: 100vh;
+        overflow-y: auto;
+        width: 4%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+    }
+
+    &__icon {
+        cursor: pointer;
+        font-size: 1.2rem;
+
+        &:hover {
+            color: $a4-hex;
+        }
+    }
+}

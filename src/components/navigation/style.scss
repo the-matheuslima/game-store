@@ -1,0 +1,23 @@
+@use "../../scss/" as *;
+.nav {
+    padding: 1rem 2rem;
+    @include flex(center, flex-start);
+    &__input__box {
+        width: 100%;
+        input {
+            width: 40%;
+            margin-right: 1rem;
+            outline: none;
+            height: 25px;
+            padding: 8px;
+        }
+
+        button {
+            cursor: pointer;
+            color: white;
+            border: none;
+            padding: 5px 8px;
+            background-color: unset;
+        }
+    }
+}

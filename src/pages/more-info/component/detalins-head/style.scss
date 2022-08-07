@@ -1,0 +1,121 @@
+@use "../../../../scss/" as *;
+
+.details__game {
+    backdrop-filter: blur(1px);
+
+    &-head {
+        @include flex(center, space-between);
+
+        &-left {
+            .game_title {
+                padding: 1rem 0;
+            }
+        }
+
+        &-right {
+            @include flex(center, space-between);
+            flex-direction: column;
+
+            .details__static {
+                @include flex(center, space-between);
+                padding: 1rem 0;
+            }
+
+            .details__platforms {
+                @include flex(center, center);
+                gap: 10px;
+                flex-wrap: wrap;
+
+                .details__platform {
+                    border-radius: 5px;
+                    border: 2px solid $a5-hex;
+                    padding: 2px 5px;
+                    color: $a5-hex;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    &-meta {
+        .game_title {
+            font-size: 1.7em;
+            padding: 0.5rem 0;
+        }
+
+        .game_publisher {
+            font-size: 1.1em;
+            padding: 0rem 0 0.5rem;
+        }
+    }
+
+    &-about {
+        display: flex;
+        margin: 0 auto;
+        gap: 3rem;
+        padding: 2rem 1rem;
+
+        .details__game-meta {
+            display: grid;
+            grid-template-columns: repeat(3, 0.4fr);
+            gap: 20px 10px;
+            flex: 1;
+
+            &-block {
+                .details__game-meta-list {
+                    @include flex(center, unset);
+
+                    .text-item {
+                        list-style-type: circle;
+                    }
+                }
+
+                .text-link {
+                    text-decoration: revert;
+                }
+
+                .details__game-meta-title {
+                    padding: 10px 0;
+                    color: $color-text-2;
+                }
+
+                .details__game-meta-text {
+                    font-size: 0.9rem;
+                }
+
+                .details__game-metascore {
+                    width: 45px;
+                }
+                .red {
+                    color: red;
+                }
+
+                .green {
+                    color: green;
+                    border: 2px solid green;
+                    padding: 10px;
+                    border-radius: 5px;
+                }
+            }
+        }
+
+        &-box {
+            flex: 1;
+        }
+        p {
+            line-height: 1.2rem;
+        }
+    }
+
+    &__banner {
+        width: 400px;
+        border-radius: 5px;
+        height: 200px;
+
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

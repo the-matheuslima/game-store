@@ -1,0 +1,54 @@
+@use "../../scss/" as *;
+.gamelist {
+    width: 294px;
+    height: 317px;
+    cursor: pointer;
+    border-radius: 25px;
+    position: relative;
+    box-shadow: 0 10px 10px $a2-hex;
+
+    &__img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        border-radius: 20px 20px 0 0;
+        height: 67%;
+    }
+
+    &__info {
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        height: 33%;
+        background-color: $a2-hex;
+        border-radius: 0 0 4px 4px;
+        @include flex(center, center);
+        flex-direction: column;
+        gap: 5px;
+
+        &__rating {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: rgb(220, 200, 27);
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-weight: bolder;
+            font-size: small;
+            color: rgb(29, 29, 29);
+        }
+    }
+
+    &__genres-list {
+        @include flex(center, center);
+        flex-wrap: wrap;
+        gap: 10px;
+
+        .gamelist__genres-item {
+            span {
+                font-size: medium;
+                color: rgb(149, 149, 149);
+            }
+        }
+    }
+}
