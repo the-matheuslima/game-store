@@ -1,14 +1,20 @@
 export interface Games {
+    map: any
+    slice: any
     name: string,
     background_image: string
-    description_raw: string
-    playtime: string
-    rating: string
-    rating_top: string
+    background_image_additional?: string
+    description_raw: string,
+    description: string,
+    playtime: string,
+    rating: string,
+    metacritic: number,
+    rating_top: string,
     publishers: Object[],
     platforms: Object[],
     genres: Genres[],
-    tags: Tags[]
+    tags: Tags[],
+    ratings: Ratings[]
     id: number,
 }
 
@@ -27,6 +33,9 @@ interface Genres {
     slug: string
 }
 
-// export interface Search {
-
-// }
+interface Ratings {
+    count: number
+    id: number
+    percent: number
+    title: string
+}
