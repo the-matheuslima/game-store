@@ -2,24 +2,17 @@ import { useEffect, useState } from "react";
 import CarouselGames from "../../components/carouselGames";
 import GameList from "../../components/game-list";
 import GameGrid from "../../components/games-grid";
+import Loading from "../../components/loading";
 import { api } from "../../service/api/api";
+import { Games } from "../../types/games";
 import './style.scss'
 
 export default function Home() {
-    const [games, setGames] = useState([]);
-    const [released, setReleased] = useState([])
+    const [released, setReleased] = useState<Games | null>(null)
     const [popular, setPopular] = useState([])
     const [indie, setIndie] = useState([])
     const [rpg, setRpg] = useState([])
     const [adventure, setAdventure] = useState([])
-
-    useEffect(() => {
-        const getGames = async () => {
-            const response = await api.getListGames();
-            setGames(response.data.results)
-        }
-        getGames()
-    }, []);
 
     useEffect(() => {
         const getGamesReleased = async () => {
@@ -62,60 +55,66 @@ export default function Home() {
     }, []);
 
     return (
+
         <main className="home">
-            <section className="home__released mb-2">
-                <h2 className=" mb-2">Lançado em 2022</h2>
-                <CarouselGames>
-                    {released && released.map((game, index) => (
-                        <GameList games={game} key={index} />
-                    ))}
-                </CarouselGames>
-            </section>
+            {released && popular && rpg && adventure && indie ?
+                <>
+                    <section className="home__released mb-2">
+                        <h2 className=" mb-2">Lançado em 2022</h2>
+                        <CarouselGames>
+                            {released.map((game, index) => (
+                                <GameList games={game} key={index} />
+                            ))}
+                        </CarouselGames>
+                    </section>
 
-            <section className="home__popular">
-                <h2 className=" mb-2">Jogos Populares</h2>
+                    <section className="home__popular">
+                        <h2 className=" mb-2">Jogos Populares</h2>
 
-                <CarouselGames>
-                    {popular && popular.slice(0, 15).map((game, index) => (
-                        <GameList games={game} key={index} />
-                    ))}
-                </CarouselGames>
-            </section>
+                        <CarouselGames>
+                            {popular.slice(0, 15).map((game, index) => (
+                                <GameList games={game} key={index} />
+                            ))}
+                        </CarouselGames>
+                    </section>
 
-            <section>
-                <ul className="home__game-grid">
-                    {released && released.slice(0, 3).map((game, index) => (
-                        <GameGrid games={game} key={index} />
-                    ))}
-                </ul>
-            </section>
+                    <section>
+                        <ul className="home__game-grid">
+                            {released.slice(0, 3).map((game, index) => (
+                                <GameGrid games={game} key={index} />
+                            ))}
+                        </ul>
+                    </section>
 
-            <section className="home__indies mb-2">
-                <h2 className=" mb-2">Jogos indies</h2>
-                <CarouselGames>
-                    {indie && indie.map((game, index) => (
-                        <GameList games={game} key={index} />
-                    ))}
-                </CarouselGames>
-            </section>
+                    <section className="home__indies mb-2">
+                        <h2 className=" mb-2">Jogos indies</h2>
+                        <CarouselGames>
+                            {indie && indie.map((game, index) => (
+                                <GameList games={game} key={index} />
+                            ))}
+                        </CarouselGames>
+                    </section>
 
-            <section className="home__indies mb-2">
-                <h2 className=" mb-2">Jogos de rpg</h2>
-                <CarouselGames>
-                    {rpg && rpg.map((game, index) => (
-                        <GameList games={game} key={index} />
-                    ))}
-                </CarouselGames>
-            </section>
+                    <section className="home__indies mb-2">
+                        <h2 className=" mb-2">Jogos de rpg</h2>
+                        <CarouselGames>
+                            {rpg && rpg.map((game, index) => (
+                                <GameList games={game} key={index} />
+                            ))}
+                        </CarouselGames>
+                    </section>
 
-            <section className="home__indies mb-2">
-                <h2 className=" mb-2">Jogos de estrategia</h2>
-                <CarouselGames>
-                    {adventure && adventure.map((game, index) => (
-                        <GameList games={game} key={index} />
-                    ))}
-                </CarouselGames>
-            </section>
+                    <section className="home__indies mb-2">
+                        <h2 className=" mb-2">Jogos de estrategia</h2>
+                        <CarouselGames>
+                            {adventure && adventure.map((game, index) => (
+                                <GameList games={game} key={index} />
+                            ))}
+                        </CarouselGames>
+                    </section>
+                </>
+                : <Loading />}
         </main>
+
     );
 }
