@@ -16,8 +16,6 @@
     }
 
     &__info {
-        position: absolute;
-        bottom: 0px;
         width: 100%;
         height: 33%;
         background-color: $a2-hex;
@@ -26,28 +24,27 @@
         flex-direction: column;
         gap: 5px;
 
-        &__rating {
+        &-rating {
             position: absolute;
             top: 0;
             right: 0;
-            background-color: rgb(220, 200, 27);
-            padding: 2px 4px;
+            padding: 15px 20px;
             border-radius: 2px;
             font-weight: bolder;
             font-size: small;
-            color: rgb(29, 29, 29);
+            color: $color-text-1;
         }
     }
 
     &__genres-list {
         @include flex(center, center);
         flex-wrap: wrap;
-        gap: 10px;
+        column-gap: 8px;
 
         .gamelist__genres-item {
             span {
                 font-size: medium;
-                color: rgb(149, 149, 149);
+                color: $color-text-2;
             }
         }
     }

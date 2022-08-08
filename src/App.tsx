@@ -3,28 +3,28 @@ import Navigation from './components/navigation';
 import Catalog from './pages/catolog'
 import Home from './pages/home'
 import Search from './pages/search'
-import './App.css'
+import './App.scss'
 import MoreInfo from './pages/more-info';
 import NavBarLeft from './components/navbar-left';
 
 function App() {
-  return (
-    <Router>
-      <div className='as'>
-        <NavBarLeft />
-        <div className='abb'>
-          <Navigation />
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/catalog' element={<Catalog />} />
-            {/* <Route path='catalog/:id?' /> */}
-            <Route path='/catalog/:id/' element={<MoreInfo />} />
-            <Route path='search/:id' element={<Search />} />
-          </Routes>
-        </div>
-      </div>
-    </Router>
-  )
+    return (
+        <Router>
+            <div className='flex-view'>
+                <NavBarLeft />
+                <div className='flex-routes'>
+                    <Navigation />
+                    <Routes>
+                        <Route path='/' element={<Home />} />
+                        <Route path='/catalog' element={<Catalog />} />
+                        {/* <Route path='catalog/:id?' /> */}
+                        <Route path='/catalog/:id/' element={<MoreInfo />} />
+                        <Route path='search/:id' element={<Search />} />
+                    </Routes>
+                </div>
+            </div>
+        </Router>
+    )
 }
 
 export default App
