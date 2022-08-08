@@ -11,30 +11,18 @@
     }
 
     .gamegrid__info {
+        @include flex(center, center);
+        flex-direction: column;
+        text-align: center;
+
         position: absolute;
         bottom: 0px;
-        background-color: #121b26;
-        border-radius: 0 0 4px 4px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
         gap: 5px;
         width: 50%;
         height: 100%;
+        border-radius: 0 0 4px 4px;
         transition: all 0.5s;
-
-        &__rating {
-            position: absolute;
-            top: 0;
-            right: 0;
-            background-color: rgb(220, 200, 27);
-            padding: 2px 4px;
-            border-radius: 2px;
-            font-weight: bolder;
-            font-size: small;
-            color: rgb(29, 29, 29);
-        }
+        background-color: $a2-hex;
         &__name {
             text-align: center;
         }
@@ -44,18 +32,27 @@
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
-        gap: 10px;
+        column-gap: 8px;
     }
 
     .gamegrid__genres-item {
         font-size: medium;
         color: $color-text-2;
-        // display: none;
-        // opacity: 0.5;
+        padding: 2px;
+    }
+
+    .gamegrid__info-metacritic {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 15px 20px;
+        border-radius: 2px;
+        font-weight: bolder;
+        font-size: small;
+        color: $color-text-1;
     }
 
     &:hover {
-        // transition: all 0.5s;
         .gamegrid__info {
             transition: all 0.8s;
             transform: translateX(-100%);
