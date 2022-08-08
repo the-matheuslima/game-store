@@ -1,30 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import './style.scss';
 
 export default function DetalinsHead({ detalins }) {
+    const [collapsed, setCollapsed] = useState(true);
+
+    const handleCollapsed = () => {
+        setCollapsed(prev => !prev);
+    };
+
     return (
         <>
             {detalins && (
                 <section className="details__game details__container">
-                    <div className="details__game-head">
-                        <div className="details__game-head-left">
-                            <h2 className="game_title">{detalins.name}</h2>
-                            {/* {detalins.publishers && detalins.publishers.map(publisher => (
-                                <p className="game_publisher">{publisher.name}</p>
-                            ))} */}
-                            <div className="details__game__banner">
+                    <div >
+                        <div className="details__game-head">
+                            <h2 className="details__game-title">{detalins.name}</h2>
+                            <div className="details__game-publishers">
+                                {detalins.publishers && detalins.publishers.map(publisher => (
+                                    <p className="details__game-publisher">{publisher.name}</p>
+                                ))}
+                            </div>
+                            <div className="details__game-banner">
                                 <img className="img" src={detalins.background_image} alt="" />
                             </div>
 
                             <div className="details__game-meta">
-                                <button style={{ padding: '5px 5rem ', margin: '1rem 0' }}>add na coleção</button>
+                                <button>add na coleção</button>
                             </div>
                         </div>
-
                     </div>
-                    <div className="details__game-about">
-                        <div className="details__game-about-box">
-                            <p className="details__game-about-text">{detalins.description_raw && detalins.description_raw}</p>
+                    <div className="details__game-info">
+                        <div className="details__game-about">
+                            <h2>About</h2>
+                            <div className="details__game-about-box" dangerouslySetInnerHTML={{ __html: (collapsed ? detalins.description.length > 220 ? `${detalins.description.substring(0, 220)}...` : '' : `${detalins.description} `) }} />
+                            <span onClick={handleCollapsed} className={`${detalins.description.length < 220 ? 'hidden' : ''} details__game-readmore`}>Ler mais</span>
                         </div>
 
                         <div className="details__game-meta">
@@ -44,20 +53,20 @@ export default function DetalinsHead({ detalins }) {
 
                             <div className="details__game-meta-block">
                                 <h4 className="details__game-meta-title">Genre</h4>
-                                <div className="details__game-meta-list">
+                                <ul className="details__game-meta-list">
                                     {detalins.genres && detalins.genres.map((genres, i) => (
-                                        <p className="details__game-meta-text" key={i}>{genres.name && genres.name + ', '}</p>
+                                        <li className="details__game-meta-text text-item" key={i}>{genres.name && genres.name}</li>
                                     ))}
-                                </div>
+                                </ul>
                             </div>
 
                             <div className="details__game-meta-block">
                                 <h4 className="details__game-meta-title">publishers</h4>
-                                <div className="details__game-meta-list">
+                                <ul className="details__game-meta-list">
                                     {detalins.publishers && detalins.publishers.map((publisher, i) => (
-                                        <p className="details__game-meta-text" key={i}>{publisher.name && publisher.name + ', '}</p>
+                                        <li className="details__game-meta-text text-item" key={i}>{publisher.name && publisher.name}</li>
                                     ))}
-                                </div>
+                                </ul>
                             </div>
 
                             <div className="details__game-meta-block">
