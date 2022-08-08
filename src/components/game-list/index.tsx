@@ -11,7 +11,9 @@ export default function GameList({ games }) {
   return (
     <SplideSlide>
       <li className='gamelist'>
-        <img className='gamelist__img' src={background_image} alt={`game ${name}`} />
+        <div className='gamelist__content-img'>
+          <img className='gamelist__img' src={background_image} alt={`game ${name}`} />
+        </div>
         <div className='gamelist__info'>
           <span className={`${Number(metacritic) > 50 ? 'green' : 'red'} gamelist__info-rating`}>{metacritic}</span>
           <p className='gamelist__info-name'><Link replace={true} to={`/catalog/${id}`}>{name}</Link></p>
