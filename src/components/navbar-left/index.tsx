@@ -3,6 +3,7 @@ import './style.scss'
 
 import { MdOutlineHome, MdOutlineComputer } from 'react-icons/md'
 import { FaPlaystation, FaXbox } from 'react-icons/fa'
+import { IoGameController } from 'react-icons/io5'
 import { Link } from "react-router-dom";
 
 type Props = {};
@@ -14,6 +15,12 @@ export default function NavBarLeft({ }: Props) {
                 <li className="navbar-left__item">
                     <Link to='/'>
                         <MdOutlineHome className="navbar-left__icon" />
+                    </Link>
+                </li>
+
+                <li>
+                    <Link to='/catalog'>
+                        <IoGameController className="navbar-left__icon" />
                     </Link>
                 </li>
 

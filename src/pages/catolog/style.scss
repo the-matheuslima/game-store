@@ -1,0 +1,27 @@
+@use "../../scss/index" as *;
+
+.catalog {
+    &__games {
+        padding: 0.5rem;
+    }
+    &__genres {
+        padding: 2rem;
+
+        &-list {
+            @include flex(center, center);
+            gap: 20px;
+
+            p {
+                background-color: $a3-hex;
+                padding: 5px 8px;
+                border-radius: 8px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__list {
+        @include flex(center, center);
+        gap: 43px 25px;
+    }
+}
