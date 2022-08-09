@@ -35,7 +35,7 @@
 - [x] Listar os jogos.
 - [x] Pagina onde pode-se ver as info do jogo.
 - [x] Pesquisar por algum jogo.
-- [ ] Filtrar por jogos.
+- [x] Filtrar por jogos.
 - [ ] Coleção onde o usuario pode selecionar um pre-determinada ou criar uma (CRUD).
 - [ ] Autenticação com o firebase.
 - [ ] testes.
@@ -44,7 +44,7 @@
 <p>Segue as instruções para baixar e executar o projeto na sua máquina:</p>
 
 <p><code>git clone</code> + <code>URL do Projeto</code>: clonar este repositório.</p>
-<p><code>cd games</code>: acessa a pasta do projeto no terminal.</p>
+<p><code>cd game-store</code>: acessa a pasta do projeto no terminal.</p>
 <p><code>npm i</code>: para baixar as dependências do projeto.</p>
 
 <h3>🪛 Pegue as chaves necessárias</h3>
