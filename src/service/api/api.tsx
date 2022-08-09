@@ -11,8 +11,13 @@ export const api = {
         return await axiosClient.get(url);
     },
 
-    getListByGenres: async (genres: string) => {
-        const url = `games?key=${import.meta.env.VITE_API_KEY}&ordering=-added&genres=${genres}`;
+    getGameByFilters: async (genres?: string, ordering?: string) => {
+        const url = `games?key=${import.meta.env.VITE_API_KEY}&ordering=${ordering}&genres=${genres}`;
+        return await axiosClient.get(url);
+    },
+
+    getListByGenres: async (genre: string) => {
+        const url = `games?key=${import.meta.env.VITE_API_KEY}&genres=${genre}`
         return await axiosClient.get(url);
     },
 

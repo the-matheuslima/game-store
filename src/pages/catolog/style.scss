@@ -4,6 +4,11 @@
     &__games {
         padding: 0.5rem;
     }
+    &__title {
+        text-transform: uppercase;
+        padding: 1rem 0;
+    }
+
     &__genres {
         padding: 2rem;
 
@@ -11,11 +16,16 @@
             @include flex(center, center);
             gap: 20px;
 
-            p {
+            .catalog__genres-item {
                 background-color: $a3-hex;
                 padding: 5px 8px;
                 border-radius: 8px;
                 cursor: pointer;
+                transition: all 0.5s;
+
+                &:hover {
+                    background-color: $a5-hex;
+                }
             }
         }
     }

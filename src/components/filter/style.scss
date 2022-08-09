@@ -1,0 +1,33 @@
+@use "../../scss/" as *;
+
+.catalog {
+    &__filters {
+        @include flex(flex-start, flex-start);
+        column-gap: 5rem;
+
+        &-box {
+            position: relative;
+        }
+
+        &-buttom {
+            background-color: $a3-hex;
+            padding: 12px 10px;
+            color: $color-text-1;
+            border-radius: 5px;
+            width: 168px;
+            cursor: pointer;
+        }
+
+        &-list {
+            background-color: $a2-hex;
+            position: absolute;
+            z-index: 10;
+        }
+
+        &-item {
+            padding: 10px;
+            cursor: pointer;
+            width: 168px;
+        }
+    }
+}

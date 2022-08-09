@@ -1,33 +1,34 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import CardGame from "../../components/card-game";
 import Loading from "../../components/loading";
+import Filter from "../../components/filter";
+
 import { api } from "../../service/api/api";
 import { Games } from "../../types/games";
+
 import { genresList } from "../../utils/genres-list";
 import './style.scss'
-type Props = {};
 
-export default function Catalog({ }: Props) {
+export default function Catalog() {
     const [games, setGames] = useState<Games | null>(null);
-    const [Loadinga, setLoadinga] = useState(false)
-    const [genres, setGenres] = useState('');
+    const [loader, setLoader] = useState(false);
+    const [genres, setGenres] = useState('action');
+    const [sortOrder, setSortOrder] = useState({ filter: 'popularity', name: 'Popularity' });
 
     useEffect(() => {
         const getGames = async () => {
             const response = await api.getListGames();
             setGames(response.data.results);
-            console.log(response.data);
-
         };
-        getGames();
+        getGames()
     }, []);
 
     useEffect(() => {
         try {
             const getGames = async () => {
-                const response = await api.getListByGenres(genres);
+                const response = await api.getGameByFilters(genres, sortOrder.filter);
                 setGames(response.data.results);
-                setLoadinga(true)
+                setLoader(true)
             };
             getGames();
         }
@@ -35,51 +36,42 @@ export default function Catalog({ }: Props) {
             console.log(err);
         }
         finally {
-            setLoadinga(false)
+            setLoader(false)
         }
-    }, [genres]);
+    }, [genres, sortOrder]);
 
-    const getGenres = (e) => {
-        setGenres(e)
+    const getGenres = (slug: string) => {
+        setGenres(slug)
+    }
+
+    const handlerFilterOrder = (filter: string, name: string) => {
+        setSortOrder({ filter: filter, name: name });
     }
 
     return (
         <main className="catalog">
             <section className="catalog__genres">
-                <div className="catalog__genres-list">
-                    {genresList.map(genres => (
-                        <p onClick={(e) => getGenres(genres.slug)}>{genres.name}</p>
+                <ul className="catalog__genres-list">
+                    {genresList.map((genres, i) => (
+                        <li className="catalog__genres-item" key={i} onClick={() => getGenres(genres.slug)}>{genres.name}</li>
                     ))}
+                </ul>
+
+                <div>
+                    <h2 className="catalog__title">{genres}</h2>
+                    <Filter handlerFilterOrder={handlerFilterOrder} orderName={sortOrder.name} />
                 </div>
             </section>
-            {Loadinga ?
-                <>
 
-                    <section className="catalog__games">
-                        <ul className="catalog__list">
-                            {games?.map((game) => (
-                                <li className='gamelist'>
-                                    <div className='gamelist__content-img'>
-
-                                        <img className='gamelist__img' src={game.background_image} alt={`game ${game.name}`} />
-                                    </div>
-                                    <div className='gamelist__info'>
-                                        <span className={`${Number(game.metacritic) > 50 ? 'green' : 'red'} gamelist__info-rating`}>{game.metacritic}</span>
-                                        <p className='gamelist__info-name'><Link replace={true} to={`/catalog/${game.id}`}>{game.name}</Link></p>
-                                        <ul className='gamelist__genres-list'>
-                                            {/* {console.log(games)} */}
-                                            {game.genres.map((genres) => (
-                                                <li key={genres.id} className='gamelist__genres-item'>
-                                                    <span>{genres.name}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
-                    </section>
-                </> : <Loading />}
+            {loader ?
+                <section className="catalog__games">
+                    <ul className="catalog__list">
+                        {games?.map((game) => (
+                            <CardGame key={game.id} games={game} />
+                        ))}
+                    </ul>
+                </section>
+                : <Loading />}
         </main>
     );
 }
