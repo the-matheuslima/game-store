@@ -7,24 +7,6 @@ type Props = {
     | string
     | string[];
 };
-const options = {
-    desktop: {
-        breakpoint: { max: 1400, min: 1024 },
-        items: 4,
-        slidesToSlide: 4 // optional, default to 1.
-    },
-    tablet: {
-        breakpoint: { max: 1024, min: 768 },
-        items: 3,
-        slidesToSlide: 3 // optional, default to 1.
-    },
-    mobile: {
-        breakpoint: { max: 767, min: 464 },
-        items: 2,
-        slidesToSlide: 1 // optional, default to 1.
-    }
-};
-
 
 function CarouselGames({ children }: Props) {
     return (
@@ -35,11 +17,21 @@ function CarouselGames({ children }: Props) {
                 gap: "10px",
                 arrows: false,
                 perPage: 4,
-                autoScroll: {
-                    speed: 2,
+                fixedWidth: '324px',
+                fixedHeight: '317px',
+
+                breakpoints: {
+                    640: {
+                        fixedWidth: '280px',
+                        perPage: 1,
+                    },
+                    400: {
+                        fixedWidth: '210px',
+                        fixedHeight: '280px',
+                        perPage: 1,
+                    }
                 },
                 pagination: false,
-                autoplay: true,
             }}
         >
             {children}
