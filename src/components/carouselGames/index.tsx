@@ -22,12 +22,13 @@ function CarouselGames({ children }: Props) {
 
                 breakpoints: {
                     640: {
-                        fixedWidth: '280px',
+                        fixedWidth: '307px',
+                        fixedHeight: '300px',
                         perPage: 1,
                     },
                     400: {
-                        fixedWidth: '210px',
-                        fixedHeight: '280px',
+                        fixedWidth: '290px',
+                        fixedHeight: '283px',
                         perPage: 1,
                     }
                 },
