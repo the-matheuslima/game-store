@@ -8,7 +8,7 @@ type Props = {
 };
 
 function Filter({ handlerFilterOrder, orderName }: Props) {
-    const [collapseOrder, setCollapseOrder] = useState(Boolean);
+    const [collapseOrder, setCollapseOrder] = useState(true);
 
     const collapse = () => {
         setCollapseOrder(!collapseOrder)

@@ -27,6 +27,15 @@ interface Tags {
     slug: string
 }
 
+
+export interface favorite {
+    id: number;
+    name: string;
+    background_image: string;
+    metacritic: number;
+    genres: Genres[];
+};
+
 interface Genres {
     id: number
     name: string
@@ -39,3 +48,5 @@ interface Ratings {
     percent: number
     title: string
 }
+
+

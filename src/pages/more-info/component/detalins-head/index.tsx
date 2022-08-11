@@ -1,12 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+import { addInFavorites, removeInFavorites } from '../../../../store/my-favorite/my-favorite.store';
+import { RootState } from '../../../../store/store';
+
+import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import './style.scss';
 
-export default function DetalinsHead({ detalins }) {
-    const [collapsed, setCollapsed] = useState(true);
 
-    const handleCollapsed = () => {
-        setCollapsed(prev => !prev);
+export default function DetalinsHead({ detalins }) {
+    const [collapsedAbout, setCollapsedAbout] = useState(true);
+    const FavoritesGames = useSelector((state: RootState) => state.favorites.favorite);
+
+    const [fvActive, setFvActive] = useState(false);
+    const dispatch = useDispatch();
+
+    const handleCollapsedAbout = () => {
+        setCollapsedAbout(prev => !prev);
     };
+
+    const handleFavorites = () => {
+        if (fvActive) {
+            dispatch(
+                removeInFavorites(detalins.id)
+            )
+            setFvActive(false)
+        } else {
+            dispatch(
+                addInFavorites({
+                    id: detalins.id,
+                    name: detalins.name,
+                    background_image: detalins.background_image,
+                    metacritic: detalins.metacritic,
+                    genres: detalins.genres,
+                })
+            );
+            setFvActive(true)
+        }
+    };
+
+    useEffect(() => {
+        FavoritesGames.forEach(favorite => favorite.id === detalins.id ? setFvActive(true) : null)
+    }, [])
 
     return (
         <>
@@ -17,23 +52,29 @@ export default function DetalinsHead({ detalins }) {
                             <h2 className="details__game-title">{detalins.name}</h2>
                             <div className="details__game-publishers">
                                 {detalins.publishers && detalins.publishers.map(publisher => (
-                                    <p className="details__game-publisher">{publisher.name}</p>
+                                    <p key={publisher.id} className="details__game-publisher">{publisher.name}</p>
                                 ))}
                             </div>
-                            <div className="details__game-banner">
+                            <div className="details__game-banner mb-2">
                                 <img className="img" src={detalins.background_image} alt="" />
                             </div>
 
-                            <div className="details__game-meta">
-                                <button>add na coleção</button>
+                            <div className="details__game-meta" onClick={() => handleFavorites()}>
+                                <button className='details__game-meta-btn'>
+                                    {fvActive ? <MdFavorite color="red" /> : <MdFavoriteBorder color="red" />}
+                                    Favorite
+                                </button>
                             </div>
+
+
                         </div>
                     </div>
+
                     <div className="details__game-info">
                         <div className="details__game-about">
                             <h2>About</h2>
-                            <div className="details__game-about-box" dangerouslySetInnerHTML={{ __html: (collapsed ? detalins.description.length > 220 ? `${detalins.description.substring(0, 220)}...` : '' : `${detalins.description} `) }} />
-                            <span onClick={handleCollapsed} className={`${detalins.description.length < 220 ? 'hidden' : ''} details__game-readmore`}>Ler mais</span>
+                            <div className="details__game-about-box" dangerouslySetInnerHTML={{ __html: (collapsedAbout ? detalins.description.length > 220 ? `${detalins.description.substring(0, 220)}...` : '' : `${detalins.description} `) }} />
+                            <span onClick={handleCollapsedAbout} className={`${detalins.description.length < 220 ? 'hidden' : ''} details__game-readmore`}>Ler mais</span>
                         </div>
 
                         <div className="details__game-meta">
@@ -45,8 +86,8 @@ export default function DetalinsHead({ detalins }) {
                             <div className="details__game-meta-block">
                                 <h4 className="details__game-meta-title">Platforms</h4>
                                 <ul className="details__game-meta-list">
-                                    {detalins.platforms && detalins.platforms.map((platforms, i) => (
-                                        <li className="details__game-meta-text text-item" key={i}>{platforms.platform.name && platforms.platform.name}</li>
+                                    {detalins.platforms && detalins.platforms.map(({ platform }) => (
+                                        <li className="details__game-meta-text text-item" key={platform.id}>{platform.name && platform.name}</li>
                                     ))}
                                 </ul>
                             </div>
@@ -54,8 +95,8 @@ export default function DetalinsHead({ detalins }) {
                             <div className="details__game-meta-block">
                                 <h4 className="details__game-meta-title">Genre</h4>
                                 <ul className="details__game-meta-list">
-                                    {detalins.genres && detalins.genres.map((genres, i) => (
-                                        <li className="details__game-meta-text text-item" key={i}>{genres.name && genres.name}</li>
+                                    {detalins.genres && detalins.genres.map((genres) => (
+                                        <li className="details__game-meta-text text-item" key={genres.id}>{genres.name && genres.name}</li>
                                     ))}
                                 </ul>
                             </div>
@@ -63,8 +104,8 @@ export default function DetalinsHead({ detalins }) {
                             <div className="details__game-meta-block">
                                 <h4 className="details__game-meta-title">publishers</h4>
                                 <ul className="details__game-meta-list">
-                                    {detalins.publishers && detalins.publishers.map((publisher, i) => (
-                                        <li className="details__game-meta-text text-item" key={i}>{publisher.name && publisher.name}</li>
+                                    {detalins.publishers && detalins.publishers.map((publisher) => (
+                                        <li className="details__game-meta-text text-item" key={publisher.id}>{publisher.name && publisher.name}</li>
                                     ))}
                                 </ul>
                             </div>

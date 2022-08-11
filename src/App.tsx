@@ -6,6 +6,7 @@ import Search from './pages/search'
 import './App.scss'
 import MoreInfo from './pages/more-info';
 import NavBarLeft from './components/navbar-left';
+import Favorito from './pages/favorito';
 
 function App() {
     return (
@@ -17,9 +18,9 @@ function App() {
                     <Routes>
                         <Route path='/' element={<Home />} />
                         <Route path='/catalog' element={<Catalog />} />
-                        {/* <Route path='catalog/:id?' /> */}
                         <Route path='/catalog/:id/' element={<MoreInfo />} />
                         <Route path='search/:id' element={<Search />} />
+                        <Route path='/myLibrary' element={<Favorito />} />
                     </Routes>
                 </div>
             </div>

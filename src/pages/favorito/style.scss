@@ -1,0 +1,12 @@
+@use "../../scss/" as *;
+
+.library {
+    &__list {
+        @include flex(center, center);
+        gap: 10px;
+    }
+
+    &__content {
+        padding-top: 3rem;
+    }
+}

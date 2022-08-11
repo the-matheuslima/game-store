@@ -29,6 +29,19 @@
             }
         }
 
+        .details__game-meta-btn {
+            padding: 5px 10px;
+            background-color: $a5-hex;
+            @include flex(center, center);
+            gap: 5px;
+            cursor: pointer;
+            color: $color-text-1;
+
+            &:hover {
+                background-color: $a4-hex;
+            }
+        }
+
         .details__game-publishers {
             display: flex;
             gap: 10px;
