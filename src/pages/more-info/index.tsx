@@ -70,7 +70,7 @@ export default function MoreInfo() {
                             <section className="details__trailer mb-2">
                                 <ul className="details__trailer__list details__list">
                                     {trailer.map(trailer => (
-                                        <li className="details__trailer__item">
+                                        <li className="details__trailer__item" key={trailer.id}>
                                             <video src={trailer.data.max} width='310' height='300' poster={trailer.preview} controls />
                                         </li>
                                     ))}
@@ -81,7 +81,7 @@ export default function MoreInfo() {
                         <section className="details__screnshot  mb-2">
                             <ul className="details__screnshot-list details__list">
                                 {screnshot.slice(0, 6).map(screnshot => (
-                                    <li className="details__screnshot-list-item">
+                                    <li className="details__screnshot-list-item" key={screnshot.id}>
                                         <img src={screnshot.image} alt="" />
                                     </li>
                                 ))}
@@ -104,7 +104,7 @@ export default function MoreInfo() {
                                 <h2 className="details__title mb-2">achievements</h2>
                                 <ul className="details__achievements-list details__list">
                                     {achievements.slice(0, 6).map(achievements => (
-                                        <li className="details__achievements-item">
+                                        <li className="details__achievements-item" key={achievements.id}>
                                             <div className="details__achievements-img">
                                                 <img src={achievements.image} alt="" />
                                             </div>
@@ -133,7 +133,7 @@ export default function MoreInfo() {
                             <h2 className="details__title mb-2">Tags</h2>
                             <ul className="details__tags-list details__list">
                                 {detalins && detalins.tags.map(tags => (
-                                    <span className="details__tag">{tags.name}</span>
+                                    <span key={tags.id} className="details__tag">{tags.name}</span>
                                 ))}
                             </ul>
                         </section>

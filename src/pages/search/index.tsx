@@ -26,7 +26,7 @@ export default function Navigation() {
                 {search ?
                     <ul className="search__list">
                         {search?.map(game => (
-                            <CardGame games={game} />
+                            <CardGame key={game.id} games={game} />
                         ))}
                     </ul>
                     : <Loading />}
