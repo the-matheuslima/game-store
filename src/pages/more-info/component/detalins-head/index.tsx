@@ -50,7 +50,7 @@ export default function DetalinsHead({ detalins }) {
                     <div >
                         <div className="details__game-head">
                             <h2 className="details__game-title">{detalins.name}</h2>
-                            <div className="details__game-publishers">
+                            <div className="details__game-publishers  mb-2">
                                 {detalins.publishers && detalins.publishers.map(publisher => (
                                     <p key={publisher.id} className="details__game-publisher">{publisher.name}</p>
                                 ))}
@@ -61,12 +61,10 @@ export default function DetalinsHead({ detalins }) {
 
                             <div className="details__game-meta" onClick={() => handleFavorites()}>
                                 <button className='details__game-meta-btn'>
-                                    {fvActive ? <MdFavorite color="red" /> : <MdFavoriteBorder color="red" />}
+                                    <span className="details__game-meta-icon">{fvActive ? <MdFavorite /> : <MdFavoriteBorder />}</span>
                                     Favorite
                                 </button>
                             </div>
-
-
                         </div>
                     </div>
 
@@ -74,7 +72,7 @@ export default function DetalinsHead({ detalins }) {
                         <div className="details__game-about">
                             <h2>About</h2>
                             <div className="details__game-about-box" dangerouslySetInnerHTML={{ __html: (collapsedAbout ? detalins.description.length > 220 ? `${detalins.description.substring(0, 220)}...` : '' : `${detalins.description} `) }} />
-                            <span onClick={handleCollapsedAbout} className={`${detalins.description.length < 220 ? 'hidden' : ''} details__game-readmore`}>Ler mais</span>
+                            <span onClick={handleCollapsedAbout} className={`${detalins.description.length < 220 ? 'hidden' : ''} details__game-readmore`}>{collapsedAbout ? 'read more' : 'close'}</span>
                         </div>
 
                         <div className="details__game-meta">

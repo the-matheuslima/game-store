@@ -60,7 +60,7 @@ export default function Home() {
             {released && popular && rpg && adventure && indie ?
                 <>
                     <section className="home__released mb-2">
-                        <h2 className=" mb-2">Lançado em 2022</h2>
+                        <h2 className=" mb-2">Released in 2022</h2>
                         <CarouselGames>
                             {released.map((game, index) => (
                                 <GameList games={game} key={index} />
@@ -69,7 +69,7 @@ export default function Home() {
                     </section>
 
                     <section className="home__popular">
-                        <h2 className=" mb-2">Jogos Populares</h2>
+                        <h2 className=" mb-2">Popular Games</h2>
 
                         <CarouselGames>
                             {popular.slice(0, 15).map((game, index) => (
@@ -87,16 +87,16 @@ export default function Home() {
                     </section>
 
                     <section className="home__indies mb-2">
-                        <h2 className=" mb-2">Jogos indies</h2>
+                        <h2 className=" mb-2">Indie games</h2>
                         <CarouselGames>
-                            {indie && indie.map((game, index) => (
+                            {indie.map((game, index) => (
                                 <GameList games={game} key={index} />
                             ))}
                         </CarouselGames>
                     </section>
 
                     <section className="home__indies mb-2">
-                        <h2 className=" mb-2">Jogos de rpg</h2>
+                        <h2 className=" mb-2">RPG games</h2>
                         <CarouselGames>
                             {rpg && rpg.map((game, index) => (
                                 <GameList games={game} key={index} />
@@ -105,7 +105,7 @@ export default function Home() {
                     </section>
 
                     <section className="home__indies mb-2">
-                        <h2 className=" mb-2">Jogos de estrategia</h2>
+                        <h2 className=" mb-2">strategy games</h2>
                         <CarouselGames>
                             {adventure && adventure.map((game, index) => (
                                 <GameList games={game} key={index} />

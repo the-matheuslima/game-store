@@ -18,8 +18,12 @@
             width: 400px;
             height: 200px;
 
+            @include tablet {
+                width: 300px;
+            }
+
             @include mobile {
-                width: 320px;
+                width: 244px;
             }
 
             img {
@@ -30,15 +34,25 @@
         }
 
         .details__game-meta-btn {
-            padding: 5px 10px;
-            background-color: $a5-hex;
             @include flex(center, center);
+            padding: 5px 10px;
             gap: 5px;
-            cursor: pointer;
+
+            background-color: $a5-hex;
             color: $color-text-1;
+            cursor: pointer;
 
             &:hover {
                 background-color: $a4-hex;
+            }
+
+            .details__game-meta-icon {
+                height: 16px;
+                width: 16px;
+
+                svg {
+                    color: $color-favorite;
+                }
             }
         }
 
@@ -66,6 +80,7 @@
             flex: 1;
             max-height: 378px;
             height: 100%;
+            overflow-y: auto;
 
             &-box {
                 p {
@@ -85,8 +100,12 @@
             gap: 20px 10px;
             flex: 1;
 
-            @include mobile {
+            @include tablet {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            @include mobile {
+                grid-template-columns: 1fr;
             }
 
             &-block {

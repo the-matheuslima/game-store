@@ -3,17 +3,41 @@
 .gamegrid {
     position: relative;
     overflow: hidden;
+
+    height: 100%;
+    width: 100%;
+
     &__img {
         height: 100%;
+        // width: 100%;
+
         &-content {
             border-radius: 10px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            min-height: 153px;
         }
     }
 
-    .gamegrid__info {
+    &:nth-child(3) {
+        grid-row: 1 / 3;
+
+        @include tablet {
+            grid-column: 1/3;
+        }
+
+        @include mobile {
+            grid-column: unset;
+            grid-row: 0 / 3;
+        }
+    }
+
+    &__info {
         @include flex(center, center);
         flex-direction: column;
         text-align: center;
+        padding: 5px;
 
         position: absolute;
         bottom: 0px;
@@ -23,25 +47,13 @@
         border-radius: 0 0 4px 4px;
         transition: all 0.5s;
         background-color: $a2-hex;
+
         &__name {
             text-align: center;
         }
     }
-    .gamegrid__genres-list {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        column-gap: 8px;
-    }
 
-    .gamegrid__genres-item {
-        font-size: medium;
-        color: $color-text-2;
-        padding: 2px;
-    }
-
-    .gamegrid__info-metacritic {
+    &__info-metacritic {
         position: absolute;
         top: 0;
         right: 0;

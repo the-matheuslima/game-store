@@ -17,7 +17,7 @@ export default function NavBarLeft() {
                     </NavLink>
                 </li>
 
-                <li>
+                <li className="navbar-left__item">
                     <NavLink to='/catalog' className={({ isActive }) =>
                         isActive ? 'activeLink' : undefined
                     } >

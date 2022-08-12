@@ -32,21 +32,24 @@ export default function Navigation() {
 
     return (
         <nav className='nav'>
-            <div className='nav__input__box'>
+            <div className='nav__input-box'>
+
                 <input type="text" value={search} onChange={handlerChangeSearch} placeholder='Search for name' />
                 <button onClick={hanlderSearch}><GiMagnifyingGlass /></button>
 
                 {search !== '' &&
-                    <div className='nav__game-list'>
+                    <ul className='nav__game-list'>
                         {listSearch?.slice(0, 7).map(listSearch => (
-                            <div className='nav__game-item'>
+                            <li className='nav__game-item'>
                                 <div className='nav__game-img'>
                                     <img src={listSearch.background_image} alt="" />
                                 </div>
-                                <Link to={`/catalog/${listSearch.id}`} onClick={() => setSearch('')}>{listSearch.name}</Link>
-                            </div>
+                                <div className='nav__game-name'>
+                                    <Link to={`/catalog/${listSearch.id}`} onClick={() => setSearch('')}>{listSearch.name}</Link>
+                                </div>
+                            </li>
                         ))}
-                    </div>
+                    </ul>
                 }
             </div>
         </nav>

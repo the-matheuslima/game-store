@@ -12,30 +12,42 @@
 }
 
 .home__game-grid {
-    margin: 3rem 5rem;
+    margin: 3rem 1rem;
     display: grid;
-    grid-template-columns: 4fr 2fr;
+    grid-template-columns: 2fr 1fr;
     align-items: center;
     justify-items: center;
     gap: 10px;
 
-    .gamegrid {
-        height: 100%;
+    @include mobile {
+        grid-template-columns: 1fr;
+    }
+}
+
+.a {
+    display: flex;
+    column-gap: 5px;
+
+    position: relative;
+    &::after {
+        content: " ";
         width: 100%;
-        &__img-content {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            min-height: 153px;
-        }
+        position: absolute;
+        height: 1rem;
+        background-color: $a1-hex;
+        bottom: 0;
+        z-index: 2;
+        transform: translate(0px, 8px);
+    }
 
-        &:first-child {
-            grid-row: 1 / 3;
-
-            &__img-content {
-                width: 100%;
-                height: 100%;
-            }
-        }
+    &::before {
+        z-index: 2;
+        content: " ";
+        width: 100%;
+        position: absolute;
+        height: 1rem;
+        background-color: $a1-hex;
+        top: 0;
+        transform: translate(0px, -8px);
     }
 }

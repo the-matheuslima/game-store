@@ -28,7 +28,7 @@ function CarouselGames({ children }: Props) {
                     },
                     400: {
                         fixedWidth: '290px',
-                        fixedHeight: '283px',
+                        fixedHeight: '333px',
                         perPage: 1,
                     }
                 },

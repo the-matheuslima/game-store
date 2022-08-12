@@ -1,7 +1,7 @@
 @use "../../scss/" as *;
 
 .details {
-    margin-top: -200px;
+    margin-top: -215px;
     position: relative;
 
     &__list {
@@ -57,13 +57,19 @@
     &__screnshot {
         &-list {
             &-item {
-                // width: 318px;
-                // height: 164px;
-
                 width: 378px;
                 height: 209px;
 
                 border-radius: 5px;
+                @include tablet {
+                    width: 338px;
+                    height: 169px;
+                }
+
+                @include mobile {
+                    width: 248px;
+                    height: 129px;
+                }
             }
 
             img {
@@ -76,20 +82,40 @@
     }
 
     &__achievements {
+        &-list {
+            max-width: 1323px;
+            @include flex(center, center);
+            gap: 10px;
+            padding: 10px;
+        }
+
         &-item {
             @include flex(center, unset);
             gap: 10px;
             flex-wrap: nowrap;
-            border-radius: 5px;
-            max-width: 30%;
-            width: 100%;
-            max-height: 10%;
+
+            width: max-content;
             padding: 10px;
             border-bottom: 1px solid $a3-hex;
+            border-radius: 5px;
+            flex: 1 auto;
+
+            &:nth-child(2n + 1) {
+                flex-direction: row-reverse;
+                background-color: $a2-hex;
+            }
         }
 
         &-info {
             flex: 1;
+
+            .details__achievements-per {
+                background-color: $a3-hex;
+                border-radius: 5px;
+                padding: 5px 8px;
+                margin: 10px;
+                width: fit-content;
+            }
         }
 
         &-img {
@@ -101,11 +127,6 @@
                 height: 100%;
                 object-fit: cover;
             }
-        }
-        &-list {
-            @include flex(center, space-evenly);
-            flex-wrap: wrap;
-            gap: 10px;
         }
     }
 
@@ -121,8 +142,6 @@
         }
 
         &-list {
-            // @include flex(center, center);
-            // gap: 10px;
             flex-wrap: wrap;
             padding: 1rem;
             background-color: $a2-hex;
