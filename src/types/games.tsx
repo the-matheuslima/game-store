@@ -16,6 +16,7 @@ export interface Games {
     tags: Tags[],
     ratings: Ratings[]
     id: number,
+    released: string
 }
 
 interface Tags {

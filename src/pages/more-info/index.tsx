@@ -102,7 +102,7 @@ export default function MoreInfo() {
                         {achievements.length !== 0 &&
                             <section className="details__achievements  mb-2">
                                 <h2 className="details__title mb-2">achievements</h2>
-                                <ul className="details__achievements-list details__list">
+                                <ul className="details__achievements-list">
                                     {achievements.slice(0, 6).map(achievements => (
                                         <li className="details__achievements-item" key={achievements.id}>
                                             <div className="details__achievements-img">
@@ -111,7 +111,7 @@ export default function MoreInfo() {
                                             <div className="details__achievements-info">
                                                 <p>{achievements.name}</p>
                                                 <p>{achievements.description}</p>
-                                                <p>{achievements.percent}</p>
+                                                <p className="details__achievements-per">{achievements.percent}%</p>
                                             </div>
                                         </li>
                                     ))}
