@@ -1,6 +1,6 @@
 @use "../../scss/index" as *;
 
-.navbar-left {
+.side-bar {
     line-height: 3rem;
     position: relative;
     z-index: 10;
@@ -22,25 +22,57 @@
         min-height: unset;
     }
 
-    &__list {
+    &__content {
         position: fixed;
         z-index: 10;
         height: 100vh;
         width: 4rem;
-
-        background-color: $a2-hex;
-
-        @include flex(center, space-evenly);
+        @include flex(center, space-around);
         flex-direction: column;
+        background-color: $a2-hex;
 
         @include mobile {
             width: 100%;
             height: 3rem;
             min-height: none;
             flex-direction: row;
+            justify-content: space-evenly;
+        }
+    }
+
+    &__logo {
+        width: 25px;
+        height: 25px;
+        position: relative;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .navbar-left__item {
+        &::after {
+            content: "";
+            border: 1px solid $color-text-1;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            left: 0;
+            transform: translateY(11px);
+        }
+    }
+
+    &__list {
+        @include flex(center, unset);
+        flex-direction: column;
+        row-gap: 8rem;
+        @include mobile {
+            height: 3rem;
+            min-height: none;
+            flex-direction: row;
+            column-gap: 5rem;
+        }
+        .side-bar__item {
             width: 22px;
             height: 22px;
         }

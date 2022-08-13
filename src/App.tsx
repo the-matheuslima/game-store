@@ -5,14 +5,14 @@ import Home from './pages/home'
 import Search from './pages/search'
 import './App.scss'
 import MoreInfo from './pages/more-info';
-import NavBarLeft from './components/navbar-left';
+import SideBar from './components/side-bar';
 import Favorito from './pages/favorito';
 
 function App() {
     return (
         <Router>
             <div className='flex-view'>
-                <NavBarLeft />
+                <SideBar />
                 <div className='flex-routes'>
                     <Navigation />
                     <Routes>

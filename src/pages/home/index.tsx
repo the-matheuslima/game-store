@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import CarouselGames from "../../components/carouselGames";
 import GameList from "../../components/game-list";
 import GameGrid from "../../components/games-grid";
+import ListHorizontal from "../../components/list-horizontal";
 import Loading from "../../components/loading";
 import { api } from "../../service/api/api";
 import { Games } from "../../types/games";
@@ -59,6 +60,14 @@ export default function Home() {
         <main className="home">
             {released && popular && rpg && adventure && indie ?
                 <>
+                    <section className="home__banner mb-2">
+                        <ul className="list__horizont">
+                            {released.map((game, index) => (
+                                <ListHorizontal games={game} key={index} />
+                            ))}
+                        </ul>
+                    </section>
+
                     <section className="home__released mb-2">
                         <h2 className=" mb-2">Released in 2022</h2>
                         <CarouselGames>

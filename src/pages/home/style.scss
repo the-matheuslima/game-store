@@ -24,9 +24,18 @@
     }
 }
 
-.a {
+.home__banner {
+    background-image: url(https://youthcoop.pt/wp-content/uploads/2020/02/Tarde-de-Jogos-banner-CMSintra-img-8x5-1.png);
+    padding: 34px 15px;
+    background-attachment: fixed;
+    border-radius: 5px;
+}
+
+.list__horizont {
     display: flex;
     column-gap: 5px;
+    overflow: hidden;
+    background-color: $a1-hex;
 
     position: relative;
     &::after {

@@ -43,6 +43,8 @@ export default function DetalinsHead({ detalins }) {
         FavoritesGames.forEach(favorite => favorite.id === detalins.id ? setFvActive(true) : null)
     }, [])
 
+    let res = detalins.description.length > 220 ? `${detalins.description.substring(0, 220)}...` : detalins.description
+
     return (
         <>
             {detalins && (
@@ -71,7 +73,8 @@ export default function DetalinsHead({ detalins }) {
                     <div className="details__game-info">
                         <div className="details__game-about">
                             <h2>About</h2>
-                            <div className="details__game-about-box" dangerouslySetInnerHTML={{ __html: (collapsedAbout ? detalins.description.length > 220 ? `${detalins.description.substring(0, 220)}...` : '' : `${detalins.description} `) }} />
+                            <div className="details__game-about-box" dangerouslySetInnerHTML={{ __html: (collapsedAbout ? res : `${detalins.description} `) }} />
+
                             <span onClick={handleCollapsedAbout} className={`${detalins.description.length < 220 ? 'hidden' : ''} details__game-readmore`}>{collapsedAbout ? 'read more' : 'close'}</span>
                         </div>
 
