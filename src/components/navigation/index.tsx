@@ -1,9 +1,10 @@
 import * as React from 'react';
-import './style.scss'
+import { Games } from '../../types/games';
+import { api } from '../../service/api/api';
 import { Link, useNavigate } from 'react-router-dom';
 import { GiMagnifyingGlass } from 'react-icons/gi'
-import { api } from '../../service/api/api';
-import { Games } from '../../types/games';
+import Logo from '../../assets/image/logo-tr.png'
+import './style.scss'
 
 export default function Navigation() {
     const [search, setSearch] = React.useState('');
@@ -32,8 +33,11 @@ export default function Navigation() {
 
     return (
         <nav className='nav'>
-            <div className='nav__input-box'>
+            <div className='nav__logo'>
+                <img src={Logo} alt="" />
+            </div>
 
+            <div className='nav__input-box'>
                 <input type="text" value={search} onChange={handlerChangeSearch} placeholder='Search for name' />
                 <button onClick={hanlderSearch}><GiMagnifyingGlass /></button>
 
