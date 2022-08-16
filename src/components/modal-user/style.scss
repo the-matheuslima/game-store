@@ -1,0 +1,39 @@
+@use "../../scss/" as *;
+
+.modal-user {
+    z-index: 100;
+    position: absolute;
+    width: 324px;
+    height: 31vh;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    transform: translateX(60px);
+    padding: 10px;
+    color: black;
+
+    @include mobile {
+        left: -3rem;
+        top: -13rem;
+        width: 259px;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 8px;
+        left: 0;
+        width: 15px;
+        height: 15px;
+        transform: rotateZ(45deg) translateX(-8px);
+        background: #fff;
+
+        @include mobile {
+            bottom: 0;
+            top: unset;
+            left: unset;
+            transform: rotateZ(45deg) translateX(5px) translateY(2px);
+            left: 0;
+        }
+    }
+}

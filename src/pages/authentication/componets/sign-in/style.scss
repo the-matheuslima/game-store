@@ -1,0 +1,25 @@
+@use "../../../../scss/" as *;
+
+.sign-in {
+    flex: 1;
+    @include flex(center, center);
+    flex-direction: column;
+    gap: 20px;
+
+    &__title {
+        font-size: 2rem;
+        text-align: center;
+        color: $color-text-1;
+    }
+
+    &__input-box {
+        @include flex(center, center);
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    &__btns {
+        @include flex(center, center);
+        gap: 10px;
+    }
+}

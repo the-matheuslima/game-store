@@ -7,6 +7,7 @@ import './App.scss'
 import MoreInfo from './pages/more-info';
 import SideBar from './components/side-bar';
 import Favorito from './pages/favorito';
+import Authentication from './pages/authentication';
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                         <Route path='/catalog/:id/' element={<MoreInfo />} />
                         <Route path='search/:id' element={<Search />} />
                         <Route path='/myLibrary' element={<Favorito />} />
+                        <Route path='/auth' element={<Authentication />} />
                     </Routes>
                 </div>
             </div>

@@ -1,0 +1,30 @@
+@use "../../scss/" as *;
+
+.is-logged {
+    &__btns {
+        @include flex(center, center);
+        gap: 2rem;
+    }
+
+    &__content {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 10;
+        color: black;
+
+        @include flex(center, center);
+        flex-direction: column;
+
+        &-img {
+            width: 60px;
+            height: 60px;
+
+            .is-logged-img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+}

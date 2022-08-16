@@ -1,0 +1,24 @@
+@use "../../scss/" as *;
+
+.authentication {
+    @include flex(center, center);
+    height: 100vh;
+
+    @include mobile {
+        flex-direction: column;
+        height: unset;
+        gap: 5rem;
+    }
+}
+
+.input-box {
+    @include flex(center, center);
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+
+    .input {
+        width: 58%;
+        padding: 8px;
+    }
+}
