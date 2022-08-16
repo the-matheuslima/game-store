@@ -15,6 +15,8 @@
  <a href="#autor">Autor</a>
 </p>
 
+<img src='./src/assets/image/screenshot.png' alt='screenshot'/>
+
 <h2>🧾Descrição</h2>
 
 <blockquote >
@@ -36,9 +38,8 @@
 - [x] Pagina onde pode-se ver as info do jogo.
 - [x] Pesquisar por algum jogo.
 - [x] Filtrar por jogos.
-- [ ] Coleção onde o usuario pode selecionar um pre-determinada ou criar uma (CRUD).
-- [ ] Autenticação com o firebase.
-- [ ] testes.
+- [x] Adicionar os jogos como favoritos
+- [x] Autenticação com o firebase.
 
 <h2>⚙Settings</h2>
 <p>Segue as instruções para baixar e executar o projeto na sua máquina:</p>
