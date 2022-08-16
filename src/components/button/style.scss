@@ -1,0 +1,19 @@
+@use "../../scss/" as *;
+
+.button {
+    min-width: 100px;
+    width: auto;
+    padding: 7px 9px;
+    background-color: $a2-hex;
+    color: $color-text-1;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    transition: all 0.2s;
+
+    &:hover {
+        background-color: $a3-hex;
+    }
+}
