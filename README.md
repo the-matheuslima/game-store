@@ -2,17 +2,15 @@
    🔗 Game-store
 </h1>
 
-<h4 align="center"> 
-	🚧  Game-store 🚀 Em construção...  🚧
-</h4>
-
 <p align="center">
- <a href="#descrição">🧾 Descrição</a> • 
- <a href="#tecnologias">🚀 Tecnologias</a> • 
-  <a href="#features">🔨 Features</a> •
- <a href="#settings">⚙ settings</a> •
- <a href="#license">📝 License</a> • 
- <a href="#autor">Autor</a>
+<a href="#descrição">🧾 Descrição</a> • 
+<a href="#tecnologias">🚀 Tecnologias</a> • 
+<a href="#features">🔨 Features</a> •
+<a href="#possiveis-melhorias">🔝 Possiveis melhorias</a> •
+<a href="#settings">⚙ settings</a> •
+<a href="#license">📝 License</a> •
+<a href="#autor">Autor</a>
+
 </p>
 
 <img src='./src/assets/image/screenshot.png' alt='screenshot'/>
@@ -41,6 +39,12 @@
 - [x] Adicionar os jogos como favoritos
 - [x] Autenticação com o firebase.
 
+<h2>🔝Possiveis melhorias</h2>
+
+- [ ] Add paginação.
+- [ ] Add outros filtros.
+- [ ] Add um CRUD, onde o usuário poderá criar uma lista e add os jogos de sua preferência.
+
 <h2>⚙Settings</h2>
 <p>Segue as instruções para baixar e executar o projeto na sua máquina:</p>
 
@@ -54,7 +58,7 @@
 
 ###
 
-<p>Depois crie um arquivo .env e coloque o seguinte</p>
+<p>Depois renomeie o arquivo .env.example para .env e coloque o seguinte</p>
 
 <pre>
   VITE_API_KEY=' ' //primeira chave
