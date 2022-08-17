@@ -160,25 +160,24 @@
         backdrop-filter: blur(6px);
         width: 100%;
         height: 100%;
-    }
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba($a1-hex, 0.6);
+        }
 
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba($a1-hex, 0.6);
-    }
-
-    &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100px;
-        background-image: linear-gradient(to top, $a1-hex, rgba(#000, 0));
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            box-shadow: inset -2px -20px 20px 0px #06090da8;
+        }
     }
 }

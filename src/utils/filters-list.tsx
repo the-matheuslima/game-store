@@ -4,5 +4,4 @@ export const orderList = [
     { name: 'Released', filter: '-released' },
     { name: 'Added', filter: '-added' },
     { name: 'Name', filter: '-name' },
-
 ]
