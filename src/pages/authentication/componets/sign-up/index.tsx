@@ -43,7 +43,6 @@ function SignUp({ }: Props) {
                 createUserDocumentFromAuth(userAuth.user, { favorites: [] })
             })
             .catch((error) => {
-
                 alert(error);
             });
     }
@@ -53,14 +52,14 @@ function SignUp({ }: Props) {
             <h2 className="sign-up__title">Dont't have an account?</h2>
             <p>Sign up With your email and password</p>
 
-            <form onSubmit={(event) => { handleSubmit(event) }} className='sign-up__form'>
+            <form onSubmit={(event) => handleSubmit(event)} className='sign-up__form'>
                 <div className="input-box">
                     <input className="input" type="text" name="displayName" placeholder="Display Name" value={displayName} onChange={handleChange} />
                     <input className="input" type="email" name="email" placeholder="Email" value={email} onChange={handleChange} />
                     <input className="input" type="password" name="password" placeholder="Password" value={password} onChange={handleChange} />
                 </div>
 
-                <p onSubmit={(event) => { handleSubmit(event) }}>
+                <p onSubmit={(event) => handleSubmit(event)}>
                     Sign up
                 </p>
             </form>

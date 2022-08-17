@@ -20,5 +20,12 @@
     .input {
         width: 58%;
         padding: 8px;
+
+        @include tablet {
+            flex-direction: column;
+            height: unset;
+            gap: 5rem;
+            width: 88%;
+        }
     }
 }
