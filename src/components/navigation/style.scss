@@ -3,6 +3,7 @@
     @include flex(center, flex-start);
     column-gap: 10px;
     padding: 1rem 2rem;
+    flex-direction: row-reverse;
     position: relative;
 
     &__logo {
@@ -38,9 +39,11 @@
             cursor: pointer;
             color: white;
             border: none;
-            padding: 5px 8px;
+            padding: 7px 8px;
             background-color: unset;
-            border-radius: 10px;
+            border-radius: 3px;
+            background-color: $a3-hex;
+            max-height: 30px;
         }
     }
 
@@ -50,14 +53,14 @@
         position: absolute;
         z-index: 102;
         border-radius: 0 0 10px 10px;
-        width: 47%;
+        width: 45.4%;
 
         @include tablet {
-            width: 60%;
+            width: 56%;
         }
 
         @include mobile {
-            width: 80%;
+            width: 70%;
         }
     }
     &__game-item {
