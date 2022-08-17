@@ -2,7 +2,7 @@
     .list__img-content {
         width: 110px;
         height: 380px;
-        transform: rotateZ(5deg);
+        transform: rotateZ(5deg) translateX(-16px);
         overflow: hidden;
 
         .list__img {

@@ -24,12 +24,10 @@ function IsLogged({ }: Props) {
         auth.signOut();
     };
 
-
-
     return (
         <div className="is-logged__content">
             <div className="is-logged__content-img">
-                <img className="is-logged-img" src={user.isLogged ? user.image === '' || user.image === null ? UserNoImg : user.image : UserDefault} alt="" />
+                <img className="is-logged-img" src={user.isLogged ? user.image === '' || user.image === null ? UserNoImg : user.image : UserDefault} alt={`user ${user.userName}`} />
             </div>
 
             <div className="is-logged__btns">

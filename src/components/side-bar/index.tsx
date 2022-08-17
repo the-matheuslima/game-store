@@ -29,7 +29,7 @@ export default function NavBarLeft() {
             <div className="side-bar__content">
                 <div className="side-bar__login">
                     <div className="side-bar__logo" onClick={() => handlerSignUser()}>
-                        <img className="is-logged-img" src={user.isLogged ? user.image === '' || user.image === null ? UserNoImg : user.image : UserDefault} alt="" />
+                        <img className="is-logged-img" src={user.isLogged ? user.image === '' || user.image === null ? UserNoImg : user.image : UserDefault} alt={`user ${user.userName}`} />
                     </div>
                     {sign ? <ModalUser /> : null}
                 </div>
@@ -60,6 +60,6 @@ export default function NavBarLeft() {
                     </li>
                 </ul>
             </div>
-        </nav>
+        </nav >
     );
 }
