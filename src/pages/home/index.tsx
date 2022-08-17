@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
-import CarouselGames from "../../components/carouselGames";
-import GameList from "../../components/game-list";
+
 import GameGrid from "../../components/games-grid";
 import ListHorizontal from "../../components/list-horizontal";
+import SectionCategory from "../../components/section-category";
 import Loading from "../../components/loading";
+
 import { api } from "../../service/api/api";
 import { Games } from "../../types/games";
+
 import './style.scss'
 
 export default function Home() {
     const [released, setReleased] = useState<Games | null>(null)
-    const [popular, setPopular] = useState([])
-    const [indie, setIndie] = useState([])
-    const [rpg, setRpg] = useState([])
-    const [adventure, setAdventure] = useState([])
+    const [popular, setPopular] = useState<Games | null>(null)
+    const [indie, setIndie] = useState<Games | null>(null)
+    const [rpg, setRpg] = useState<Games | null>(null)
+    const [adventure, setAdventure] = useState<Games | null>(null)
 
     useEffect(() => {
         const getGamesReleased = async () => {
@@ -56,7 +58,6 @@ export default function Home() {
     }, []);
 
     return (
-
         <main className="home">
             {released && popular && rpg && adventure && indie ?
                 <>
@@ -68,26 +69,11 @@ export default function Home() {
                         </ul>
                     </section>
 
-                    <section className="home__released mb-2">
-                        <h2 className=" mb-2">Released in 2022</h2>
-                        <CarouselGames>
-                            {released.map((game, index) => (
-                                <GameList games={game} key={index} />
-                            ))}
-                        </CarouselGames>
-                    </section>
+                    <SectionCategory title='Released in 2022' game={released} />
 
-                    <section className="home__popular">
-                        <h2 className=" mb-2">Popular Games</h2>
+                    <SectionCategory title='Popular Games' game={popular.slice(0, 15)} />
 
-                        <CarouselGames>
-                            {popular.slice(0, 15).map((game, index) => (
-                                <GameList games={game} key={index} />
-                            ))}
-                        </CarouselGames>
-                    </section>
-
-                    <section>
+                    <section className="home__content-game">
                         <ul className="home__game-grid">
                             {released.slice(0, 3).map((game, index) => (
                                 <GameGrid games={game} key={index} />
@@ -95,35 +81,13 @@ export default function Home() {
                         </ul>
                     </section>
 
-                    <section className="home__indies mb-2">
-                        <h2 className=" mb-2">Indie games</h2>
-                        <CarouselGames>
-                            {indie.map((game, index) => (
-                                <GameList games={game} key={index} />
-                            ))}
-                        </CarouselGames>
-                    </section>
+                    <SectionCategory title='Indie games' game={indie} />
 
-                    <section className="home__indies mb-2">
-                        <h2 className=" mb-2">RPG games</h2>
-                        <CarouselGames>
-                            {rpg && rpg.map((game, index) => (
-                                <GameList games={game} key={index} />
-                            ))}
-                        </CarouselGames>
-                    </section>
+                    <SectionCategory title='RPG games' game={rpg} />
 
-                    <section className="home__indies mb-2">
-                        <h2 className=" mb-2">strategy games</h2>
-                        <CarouselGames>
-                            {adventure && adventure.map((game, index) => (
-                                <GameList games={game} key={index} />
-                            ))}
-                        </CarouselGames>
-                    </section>
+                    <SectionCategory title='strategy games' game={adventure} />
                 </>
                 : <Loading />}
         </main>
-
     );
 }
