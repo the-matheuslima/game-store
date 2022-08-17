@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const as = {
+const user = {
 	email: '',
 	image: '',
 	uid: '',
@@ -12,7 +12,7 @@ const as = {
 const store = createSlice({
 	name: 'user',
 	initialState: {
-		user: as,
+		user: user,
 	},
 	reducers: {
 		login: (state, action) => {
@@ -20,7 +20,7 @@ const store = createSlice({
 		},
 
 		logout: (state) => {
-			state.user = as;
+			state.user = user;
 		},
 	},
 });
