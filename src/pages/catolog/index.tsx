@@ -7,13 +7,18 @@ import { api } from "../../service/api/api";
 import { Games } from "../../types/games";
 
 import { genresList } from "../../utils/genres-list";
+import { useSearchParams } from "react-router-dom";
 import './style.scss'
 
 export default function Catalog() {
-    const [games, setGames] = useState<Games | null>(null);
+    type TFtleter = {
+        ordering: string,
+        genres: string
+    }
+    const [games, setGames] = useState<Games[]>([]);
     const [loader, setLoader] = useState(false);
-    const [genres, setGenres] = useState('action');
-    const [sortOrder, setSortOrder] = useState({ filter: 'popularity', name: 'Popularity' });
+    const [filterParams, setFilterParams] = useSearchParams();
+    const [sortOrder, setSortOrder] = useState<TFtleter>({ ordering: '-metacritic', genres: 'action' });
 
     useEffect(() => {
         const getGames = async () => {
@@ -25,12 +30,12 @@ export default function Catalog() {
 
     useEffect(() => {
         try {
-            const getGames = async () => {
-                const response = await api.getGameByFilters(genres, sortOrder.filter);
+            const getGamesByFilter = async () => {
+                const response = await api.getGameByFilters(sortOrder.genres, sortOrder.ordering);
                 setGames(response.data.results);
-                setLoader(true)
+                setLoader(true);
             };
-            getGames();
+            getGamesByFilter();
         }
         catch (err) {
             console.log(err);
@@ -38,14 +43,17 @@ export default function Catalog() {
         finally {
             setLoader(false)
         }
-    }, [genres, sortOrder]);
+        console.log(loader);
+    }, [sortOrder.genres, sortOrder.ordering]);
 
     const getGenres = (slug: string) => {
-        setGenres(slug)
+        setSortOrder({ ...sortOrder, genres: slug });
+        setFilterParams({ ...sortOrder, genres: slug })
     }
 
-    const handlerFilterOrder = (filter: string, name: string) => {
-        setSortOrder({ filter: filter, name: name });
+    const getFilterOrdering = (filter: string) => {
+        setSortOrder({ ...sortOrder, ordering: filter });
+        setFilterParams({ ...sortOrder, ordering: filter })
     }
 
     return (
@@ -58,15 +66,15 @@ export default function Catalog() {
                 </ul>
 
                 <div>
-                    <h2 className="catalog__title">{genres}</h2>
-                    <Filter handlerFilterOrder={handlerFilterOrder} orderName={sortOrder.name} />
+                    <h2 className="catalog__title">{sortOrder.genres}</h2>
+                    <Filter handlerFilterOrdering={getFilterOrdering} />
                 </div>
             </section>
 
             {loader ?
                 <section className="catalog__games">
                     <ul className="catalog__list">
-                        {games?.map((game) => (
+                        {games.map((game) => (
                             <CardGame key={game.id} games={game} />
                         ))}
                     </ul>

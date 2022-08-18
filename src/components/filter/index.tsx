@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { orderList } from "../../utils/filters-list";
 import './style.scss'
 
 type Props = {
-    handlerFilterOrder: (a: string, b: string) => void,
-    orderName: string,
+    handlerFilterOrdering: (a: string) => void,
 };
 
-function Filter({ handlerFilterOrder, orderName }: Props) {
+function Filter({ handlerFilterOrdering }: Props) {
     const [collapseOrder, setCollapseOrder] = useState(true);
+    const [filterParams] = useSearchParams();
 
     const collapse = () => {
         setCollapseOrder(!collapseOrder)
@@ -18,12 +19,12 @@ function Filter({ handlerFilterOrder, orderName }: Props) {
         <div className="catalog__filters">
             <div className="catalog__filters-box">
                 <button className="catalog__filters-buttom" onClick={collapse}>
-                    Order by: {orderName}
+                    Order by: {filterParams.get('ordering')}
                 </button>
 
                 <ul className={`${collapseOrder ? 'hidden' : 'show'} catalog__filters-list`}>
                     {orderList.map(order => (
-                        <li key={order.name} className="catalog__filters-item" onClick={() => handlerFilterOrder(order.filter, order.name)}>{order.name}</li>
+                        <li key={order.name} className="catalog__filters-item" onClick={() => handlerFilterOrdering(order.filter)}>{order.name}</li>
                     ))}
                 </ul>
             </div>

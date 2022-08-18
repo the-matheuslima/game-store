@@ -1,26 +1,35 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
+import { createSearchParams, Link, useNavigate, useSearchParams } from 'react-router-dom';
+
 import { Games } from '../../types/games';
 import { api } from '../../service/api/api';
-import { Link, useNavigate } from 'react-router-dom';
+
 import { GiMagnifyingGlass } from 'react-icons/gi'
 import Logo from '../../assets/image/logo-tr.png'
 import './style.scss'
 
 export default function Navigation() {
     const [search, setSearch] = React.useState('');
-    const [listSearch, setListSearch] = React.useState<Games[] | null>(null);
+    const [listSearch, setListSearch] = React.useState<Games[]>([]);
     const navigator = useNavigate()
+
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const handlerChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value)
     };
 
     const hanlderSearch = () => {
-        navigator(`search/${search}`)
-        setSearch('')
+        setSearchParams({ q: search })
+        navigator({
+            pathname: '/search',
+            search: createSearchParams({
+                q: search
+            }).toString(),
+        })
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (search !== '') {
             const getGameSearch = async () => {
                 const response = await api.getGamesBySearch(search);
