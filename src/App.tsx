@@ -6,7 +6,7 @@ import Search from './pages/search'
 import './App.scss'
 import MoreInfo from './pages/more-info';
 import SideBar from './components/side-bar';
-import Favorito from './pages/favorito';
+import Favorite from './pages/favorito';
 import Authentication from './pages/authentication';
 
 function App() {
@@ -20,8 +20,8 @@ function App() {
                         <Route path='/' element={<Home />} />
                         <Route path='/catalog' element={<Catalog />} />
                         <Route path='/catalog/:id/' element={<MoreInfo />} />
-                        <Route path='search/:id' element={<Search />} />
-                        <Route path='/myLibrary' element={<Favorito />} />
+                        <Route path='/search' element={<Search />} />
+                        <Route path='/favorites' element={<Favorite />} />
                         <Route path='/auth' element={<Authentication />} />
                     </Routes>
                 </div>

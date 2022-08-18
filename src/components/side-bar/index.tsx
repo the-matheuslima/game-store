@@ -52,7 +52,7 @@ export default function NavBarLeft() {
                     </li>
 
                     <li className="side-bar__item">
-                        <NavLink to='/myLibrary' className={({ isActive }) =>
+                        <NavLink to='/favorites' className={({ isActive }) =>
                             isActive ? 'activeLink' : undefined
                         } >
                             <MdFavorite className="side-bar__icon" />
