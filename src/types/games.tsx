@@ -34,7 +34,7 @@ export interface favorite {
     name: string;
     background_image: string;
     metacritic: number;
-    genres: Genres[];
+    released: number
 };
 
 interface Genres {

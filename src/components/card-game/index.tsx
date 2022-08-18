@@ -24,11 +24,11 @@ export default function CardGame({ games }) {
         } else {
             dispatch(
                 addInFavorites({
-                    id: games.id,
-                    name: games.name,
-                    background_image: games.background_image,
-                    metacritic: games.metacritic,
-                    genres: games.genres,
+                    id: id,
+                    name: name,
+                    background_image: background_image,
+                    metacritic: metacritic,
+                    released: released
                 })
             );
             setFvActive(true)

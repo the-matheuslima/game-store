@@ -7,7 +7,6 @@ import { RootState } from '../../../../store/store';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import './style.scss';
 
-
 export default function DetalinsHead({ detalins }) {
     const [collapsedAbout, setCollapsedAbout] = useState(true);
     const FavoritesGames = useSelector((state: RootState) => state.favorites.favorite);
@@ -32,7 +31,7 @@ export default function DetalinsHead({ detalins }) {
                     name: detalins.name,
                     background_image: detalins.background_image,
                     metacritic: detalins.metacritic,
-                    genres: detalins.genres,
+                    released: detalins.released
                 })
             );
             setFvActive(true)

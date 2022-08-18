@@ -12,13 +12,7 @@ const store = createSlice({
 				name: '',
 				background_image: '',
 				metacritic: 0,
-				genres: [
-					{
-						id: 0,
-						name: '',
-						slug: '',
-					},
-				],
+				released: 0,
 			},
 		],
 	},
