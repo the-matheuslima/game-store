@@ -26,7 +26,7 @@ export const api = {
         return await axiosClient.get(url);
     },
 
-    getGamesBySearch: async (search: string | undefined) => {
+    getGamesBySearch: async (search: string | null) => {
         const url = `games?key=${import.meta.env.VITE_API_KEY}&search=${search}&ordering=name,released&metacritic=20,100&search_precise=${search}&search_exact=true`;
         return await axiosClient.get(url);
     },

@@ -1,24 +1,28 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, createUserDocumentFromAuth, signInWithGooglePopup, } from "../../../../service/firebase/firebase";
+
+import { useDispatch } from "react-redux";
 import { login } from "../../../../store/auth/auth";
 import Button from "../../../../components/button";
+
 import './style.scss'
 
-
 function SignIn() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const dispatch = useDispatch();
 
-    const handleEmail = (e) => {
-        setEmail(e.target.value)
+    const defaultFormFields = {
+        email: '',
+        password: '',
     }
 
-    const handlePassword = (e) => {
-        setPassword(e.target.value)
+    const [formFields, setFormFields] = useState(defaultFormFields);
+    const { email, password } = formFields;
+    const dispatch = useDispatch();
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormFields({ ...formFields, [name]: value })
     }
 
     const SignWithEmailPassword = (e) => {
@@ -69,8 +73,8 @@ function SignIn() {
             <span>Sign in With your email and password</span>
 
             <div className="input-box mb-2">
-                <input className="input" type="email" value={email} onChange={(e) => handleEmail(e)} />
-                <input className="input" type="password" name="password" value={password} onChange={(e) => handlePassword(e)} />
+                <input className="input" type="email" name="email" placeholder="Email" value={email} onChange={handleChange} />
+                <input className="input" type="password" name="password" placeholder="Password" value={password} onChange={handleChange} />
             </div>
 
             <div className="sign-in__btns">

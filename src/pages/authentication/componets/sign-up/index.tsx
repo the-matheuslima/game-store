@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { auth, createUserDocumentFromAuth, createUserWithEmailAndPassword } from "../../../../service/firebase/firebase";
+import { auth, createUserDocumentFromAuth, createUserWithEmailPassword } from "../../../../service/firebase/firebase";
 import { login } from "../../../../store/auth/auth";
 
 import './style.scss'
@@ -28,7 +28,7 @@ function SignUp({ }: Props) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        createUserWithEmailAndPassword(auth, email, password)
+        createUserWithEmailPassword(auth, email, password)
             .then((userAuth) => {
                 dispatch(
                     login({
@@ -59,7 +59,7 @@ function SignUp({ }: Props) {
                     <input className="input" type="password" name="password" placeholder="Password" value={password} onChange={handleChange} />
                 </div>
 
-                <p onSubmit={(event) => handleSubmit(event)}>
+                <p onClick={(event) => handleSubmit(event)}>
                     Sign up
                 </p>
             </form>
