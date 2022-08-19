@@ -15,10 +15,12 @@
 
 <img src='./src/assets/image/screenshot.png' alt='screenshot'/>
 
+<video src='./src/assets/video/game-video.mp4' controls/>
+
 <h2>🧾Descrição</h2>
 
 <blockquote >
-  Esta é uma aplicação ReactJS que utiliza uma API para listar diversos jogos.
+ Aplicativo de game com descrições, classificações e filtros de jogos. Consumindo uma API de jogos. RAWG Video Games Database
 </blockquote>
 
 <h2>🚀Tecnologias</h2/>
