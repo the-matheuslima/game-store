@@ -12,7 +12,7 @@ function ModalUser() {
 
     return (
         <div className="modal-user">
-            {user.isLogged ? <IsLogged /> : <Button><Link to={'/auth'}>Sign up</Link></Button>}
+            {user.isLogged ? <IsLogged /> : <Link to='/auth'><Button>Sign up</Button></Link>}
         </div>
     );
 }
