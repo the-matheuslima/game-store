@@ -1,6 +1,15 @@
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import {
+	getFirestore,
+	doc,
+	getDoc,
+	setDoc,
+	collection,
+	query,
+	getDocs,
+	where,
+} from 'firebase/firestore';
 import {
 	getAuth,
 	createUserWithEmailAndPassword,
@@ -14,13 +23,13 @@ import {
 } from 'firebase/auth';
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyDekGLBcTW3H5kMdfv2kWS_OJF7r5Vbt28',
-	authDomain: 'shop-gg.firebaseapp.com',
-	projectId: 'shop-gg',
-	storageBucket: 'shop-gg.appspot.com',
-	messagingSenderId: '1021609844189',
-	appId: '1:1021609844189:web:527e0ec0b6d14ad1b8aa34',
-	measurementId: 'G-97M7KL8FQ1',
+	apiKey: `${import.meta.env.VITE_FIREBASE_API_KEY}`,
+	authDomain: 'shop-gg-ffcda.firebaseapp.com',
+	projectId: `${import.meta.env.VITE_FIREBASE_PROJECT_ID}`,
+	storageBucket: 'shop-gg-ffcda.appspot.com',
+	messagingSenderId: `${import.meta.env.VITE_FIREBASE_MESSAGIN_SENDER_ID}`,
+	appId: `${import.meta.env.VITE_FIREBASE_APP_ID}`,
+	measurementId: `${import.meta.env.VITE_FIREBASE_MEASUREMENT_ID}`,
 };
 
 const app = initializeApp(firebaseConfig);
@@ -29,47 +38,10 @@ export const db = getFirestore();
 
 export const googleProvider = new GoogleAuthProvider();
 
-export const createUserDocumentFromAuth = async (
-	userAuth,
-	additionalInformation = {}
-) => {
-	if (!userAuth) return;
-
-	const userDocRef = doc(db, 'users', userAuth.uid);
-
-	const userSnapshot = await getDoc(userDocRef);
-
-	if (!userSnapshot.exists()) {
-		const { displayName, email, uid, photoURL } = userAuth;
-		const createdAt = new Date();
-
-		try {
-			await setDoc(userDocRef, {
-				userName: displayName,
-				image: photoURL,
-				email,
-				createdAt,
-				uid,
-				...additionalInformation,
-			});
-		} catch (error) {
-			console.log('error creating the user', error);
-		}
-	}
-
-	return userDocRef;
-};
-
-export const signInWithGooglePopup = () =>
-	signInWithPopup(auth, googleProvider);
-
-export const createUserWithEmailPassword = (
-	auth: Auth,
-	email: string,
-	password: string
-) => createUserWithEmailAndPassword(auth, email, password);
-
 export const signOutUser = async () => await signOut(auth);
+
+export const onAuthStateChangedListener = (callback) =>
+	onAuthStateChanged(auth, callback);
 
 export {
 	createUserWithEmailAndPassword,
@@ -77,4 +49,12 @@ export {
 	onAuthStateChanged,
 	signInWithEmailAndPassword,
 	signOut,
+	signInWithPopup,
+	collection,
+	getDocs,
+	query,
+	where,
+	doc,
+	getDoc,
+	setDoc,
 };

@@ -29,7 +29,7 @@ export default function NavBarLeft() {
             <div className="side-bar__content">
                 <div className="side-bar__login">
                     <div className="side-bar__logo" onClick={() => handlerSignUser()}>
-                        <img className="is-logged-img" src={user.isLogged ? user.image === '' || user.image === null ? UserNoImg : user.image : UserDefault} alt={`user ${user.userName}`} />
+                        <img className="is-logged-img" src={user.isLogged ? user.photoURL === '' || user.photoURL === null ? UserNoImg : user.photoURL : UserDefault} alt={`user ${user.displayName}`} />
                     </div>
                     {sign ? <ModalUser /> : null}
                 </div>
