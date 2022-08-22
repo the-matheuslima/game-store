@@ -33,7 +33,7 @@
         width: 4rem;
         @include flex(center, space-evenly);
         flex-direction: column;
-        background-color: $a2-hex;
+        background-color: $a1-hex;
 
         @include mobile {
             width: 100%;
@@ -91,7 +91,7 @@
     }
     .activeLink {
         color: $a5-hex;
-        background-color: $a2-hex;
+        // background-color: $a2-hex;
     }
 }
 

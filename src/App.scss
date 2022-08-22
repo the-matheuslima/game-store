@@ -10,7 +10,7 @@
 .flex-routes {
     min-height: 50vh;
     width: calc(100% - 4rem);
-    padding-bottom: 5rem;
+    padding-bottom: 2rem;
 
     @include mobile {
         width: 100%;

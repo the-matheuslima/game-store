@@ -48,9 +48,11 @@ export default function Navigation() {
                 </Link>
             </div>
 
-            <div className='nav__input-box'>
-                <input type="text" value={search} onChange={handlerChangeSearch} placeholder='Search for name' />
-                <button onClick={hanlderSearch}><GiMagnifyingGlass /></button>
+            <div className='nav__input-search'>
+                <div className='nav__input-box'>
+                    <input type="text" value={search} onChange={handlerChangeSearch} placeholder='Search for name' />
+                    <button onClick={hanlderSearch}><GiMagnifyingGlass /></button>
+                </div>
 
                 {search !== '' &&
                     <ul className='nav__game-list'>

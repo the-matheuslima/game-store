@@ -51,11 +51,11 @@ export default function DetalinsHead({ detalins }) {
                     <div >
                         <div className="details__game-head">
                             <h2 className="details__game-title">{detalins.name}</h2>
-                            <div className="details__game-publishers  mb-2">
+                            <ul className="details__game-publishers  mb-2">
                                 {detalins.publishers && detalins.publishers.map(publisher => (
-                                    <p key={publisher.id} className="details__game-publisher">{publisher.name}</p>
+                                    <li key={publisher.id} className="details__game-publisher">{publisher.name}</li>
                                 ))}
-                            </div>
+                            </ul>
                             <div className="details__game-banner mb-2">
                                 <img className="img" src={detalins.background_image} alt="" />
                             </div>
