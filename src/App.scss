@@ -15,4 +15,8 @@
     @include mobile {
         width: 100%;
     }
+
+    @include desktop-l {
+        width: calc(100% - 11rem);
+    }
 }

@@ -11,3 +11,9 @@
         @content;
     }
 }
+
+@mixin desktop-l {
+    @media only screen and (min-width: $desktop-l-width) {
+        @content;
+    }
+}

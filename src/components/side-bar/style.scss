@@ -9,6 +9,10 @@
     height: 100%;
     flex-shrink: 0;
 
+    @include desktop-l {
+        width: 11rem;
+    }
+
     @include mobile {
         line-height: unset;
 
@@ -41,6 +45,10 @@
             min-height: none;
             flex-direction: row;
             justify-content: space-evenly;
+        }
+
+        @include desktop-l {
+            width: 11rem;
         }
     }
 
