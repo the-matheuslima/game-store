@@ -4,7 +4,6 @@ import {
 	current,
 	SerializedError,
 } from '@reduxjs/toolkit';
-import { Auth } from 'firebase/auth';
 
 import {
 	auth,
@@ -26,7 +25,7 @@ const collectionRef = collection(db, 'users');
 
 interface Iuser {
 	email: string | null;
-	photoURL: string | null;
+	photoURL: string | any;
 	uid: string;
 	displayName: string | null;
 	favorites: Object[] | null;
@@ -41,17 +40,22 @@ const user: Iuser = {
 	displayName: '',
 	favorites: [],
 	isLogged: false,
-	error: undefined,
 };
 
-interface log {
+interface login {
 	email: string;
 	password: string;
 }
 
-export const signWithPasswordAndEmail = createAsyncThunk(
+interface loginAndUserName {
+	email: string;
+	password: string;
+	displayName: string;
+}
+
+export const signWithPassword = createAsyncThunk(
 	'login',
-	async ({ email, password }: log) => {
+	async ({ email, password }: login) => {
 		const SignInUser = await signInWithEmailAndPassword(auth, email, password);
 		return SignInUser;
 	}
@@ -69,19 +73,30 @@ export const reloginUser = createAsyncThunk(
 );
 
 export const createUserWithPasswordAndEmail = createAsyncThunk(
-	'signup',
-	async ({ email, password }: log) => {
+	'signUp',
+	async ({ email, password, displayName }: loginAndUserName) => {
 		const userAuth = await createUserWithEmailAndPassword(
 			auth,
 			email,
 			password
 		);
-		return userAuth;
+
+		const authenticatedUser = {
+			uid: userAuth.user.uid,
+			email: userAuth.user.email,
+			displayName: displayName,
+			photoURL:
+				'https://firebasestorage.googleapis.com/v0/b/shop-gg-ffcda.appspot.com/o/user-no-img.png?alt=media&token=174ed3fb-5d33-414c-b0ee-bf896b02fca4',
+			favorites: [],
+			isLogged: true,
+		};
+
+		return authenticatedUser;
 	}
 );
 
 export const signInWithGooglePopup = createAsyncThunk(
-	'loginwhitegoogle',
+	'loginWithGoogle',
 	async () => {
 		const r = await signInWithPopup(auth, googleProvider);
 		const { displayName, email, uid, photoURL } = r.user;
@@ -131,7 +146,6 @@ const store = createSlice({
 					photoURL: userInfo.photoURL,
 					favorites: userInfo.favorites,
 					isLogged: true,
-					error: undefined,
 				};
 				state.user = users;
 			});
@@ -142,14 +156,15 @@ const store = createSlice({
 			alert(action.error);
 		});
 
-		builder.addCase(signWithPasswordAndEmail.fulfilled, (state, action) => {
+		builder.addCase(signWithPassword.fulfilled, (state, action) => {
 			const { displayName, email, uid } = action.payload.user;
 
 			const authenticatedUser = {
 				uid: uid,
 				email: email,
 				displayName: displayName,
-				photoURL: '',
+				photoURL:
+					'https://firebasestorage.googleapis.com/v0/b/shop-gg-ffcda.appspot.com/o/user-no-img.png?alt=media&token=174ed3fb-5d33-414c-b0ee-bf896b02fca4',
 				favorites: [],
 				isLogged: true,
 			};
@@ -157,7 +172,7 @@ const store = createSlice({
 			state.user = authenticatedUser;
 		});
 
-		builder.addCase(signWithPasswordAndEmail.rejected, (state, action) => {
+		builder.addCase(signWithPassword.rejected, (state, action) => {
 			state.user.error = action.error;
 			alert(action.error.message);
 			console.error(action.error.message);
@@ -166,24 +181,13 @@ const store = createSlice({
 		builder.addCase(
 			createUserWithPasswordAndEmail.fulfilled,
 			(state, action) => {
-				const { displayName, email, uid } = action.payload.user;
-
-				const authenticatedUser = {
-					uid: uid,
-					email: email,
-					displayName: displayName,
-					photoURL: '',
-					favorites: [],
-					isLogged: true,
-				};
-				state.user = authenticatedUser;
+				state.user = action.payload;
 			}
 		);
 
 		builder.addCase(
 			createUserWithPasswordAndEmail.rejected,
 			(state, action) => {
-				state.user.error = action.error;
 				alert(action.error.message);
 			}
 		);
@@ -193,10 +197,10 @@ const store = createSlice({
 		});
 
 		builder.addCase(signInWithGooglePopup.rejected, (state, action) => {
-			state.user.error = action.error;
 			console.log(action.error.message);
 			alert(action.error.message);
 		});
+
 		builder.addCase(createUserDocumentFromAuth.fulfilled, (state, action) => {
 			if (!action.payload?.exists()) {
 				const { displayName, email, uid, photoURL, favorites } = current(

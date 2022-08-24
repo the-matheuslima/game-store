@@ -29,7 +29,7 @@ function SignUp({ }: Props) {
         e.preventDefault();
         if (password !== confirmPassword) return alert('Password incorrect')
 
-        dispatch(createUserWithPasswordAndEmail({ email, password }))
+        dispatch(createUserWithPasswordAndEmail({ email, password, displayName }))
     }
 
     return (

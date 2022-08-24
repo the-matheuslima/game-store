@@ -17,9 +17,6 @@ function IsLogged({ }: Props) {
     const user = useSelector((state: RootState) => state.auth.user);
     const dispatch = useDispatch();
 
-    console.log(user);
-
-
     const logoutOfApp = () => {
         dispatch(logout());
     };
@@ -27,7 +24,7 @@ function IsLogged({ }: Props) {
     return (
         <div className="is-logged__content">
             <div className="is-logged__content-img">
-                <img className="is-logged-img" src={user.isLogged ? user.photoURL === '' || user.photoURL === null ? UserNoImg : user.photoURL : UserDefault} alt={`user ${user.displayName}`} />
+                <img className="is-logged-img" src={user.isLogged ? user.photoURL : UserDefault} alt={`user ${user.displayName}`} />
             </div>
 
             <div className="is-logged__btns">

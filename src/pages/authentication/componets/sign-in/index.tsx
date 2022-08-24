@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import { useDispatch, useSelector } from "react-redux";
-import { createUserDocumentFromAuth, signInWithGooglePopup, signWithPasswordAndEmail } from "../../../../store/auth/auth";
+import { useDispatch } from "react-redux";
+import { createUserDocumentFromAuth, signInWithGooglePopup, signWithPassword } from "../../../../store/auth/auth";
 import Button from "../../../../components/button";
 
 import { AppDispatch, RootState } from "../../../../store/store";
@@ -18,8 +18,6 @@ function SignIn() {
     const { email, password } = formFields;
     const dispatch = useDispatch<AppDispatch>();
 
-    const user = useSelector((state: RootState) => state.auth.user);
-
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormFields({ ...formFields, [name]: value })
@@ -27,14 +25,13 @@ function SignIn() {
 
     const SignWithEmailPassword = (e) => {
         e.preventDefault();
-        dispatch(signWithPasswordAndEmail({ email, password }))
+        dispatch(signWithPassword({ email, password }))
     };
 
     const SignWithGoolge = async (e) => {
         e.preventDefault();
         dispatch(signInWithGooglePopup())
             .then(({ payload }: any) => {
-                console.log(payload);
 
                 const { displayName, email, uid, photoURL } = payload;
 
