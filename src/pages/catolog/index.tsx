@@ -43,7 +43,6 @@ export default function Catalog() {
         finally {
             setLoader(false)
         }
-        console.log(loader);
     }, [sortOrder.genres, sortOrder.ordering]);
 
     const getGenres = (slug: string) => {

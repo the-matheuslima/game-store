@@ -22,7 +22,6 @@ html {
 }
 
 body {
-    max-width: 1400px;
     width: 100%;
     overflow-x: hidden;
     margin: 0 auto;
@@ -30,7 +29,7 @@ body {
     color: white;
     background-color: $a1-hex;
     font-family: $font-robo;
-    background-image: linear-gradient(286deg, $a1-hex, $a2-hex);
+    background-image: linear-gradient(180deg, $a1-hex, $a2-hex);
 }
 
 .mb-2 {

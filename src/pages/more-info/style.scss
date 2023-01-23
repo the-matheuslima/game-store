@@ -83,7 +83,6 @@
 
     &__achievements {
         &-list {
-            max-width: 1323px;
             @include flex(center, center);
             gap: 10px;
             padding: 10px;
@@ -178,6 +177,7 @@
             width: 100%;
             height: 100px;
             box-shadow: inset -2px -20px 20px 0px #06090da8;
+            background-image: linear-gradient(to top, #06090dcf, #121b2617);
         }
     }
 }

@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth, createUserDocumentFromAuth, signInWithGooglePopup, } from "../../../../service/firebase/firebase";
-
 import { useDispatch } from "react-redux";
-import { login } from "../../../../store/auth/auth";
+import { createUserDocumentFromAuth, signInWithGooglePopup, signWithPassword } from "../../../../store/auth/auth";
 import Button from "../../../../components/button";
+
+import { AppDispatch, RootState } from "../../../../store/store";
 
 import './style.scss'
 
 function SignIn() {
-
     const defaultFormFields = {
         email: '',
         password: '',
@@ -18,7 +16,7 @@ function SignIn() {
 
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { email, password } = formFields;
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -27,44 +25,27 @@ function SignIn() {
 
     const SignWithEmailPassword = (e) => {
         e.preventDefault();
-        signInWithEmailAndPassword(auth, email, password)
-            .then(({ user }) => {
-                dispatch(
-                    login({
-                        email: user.email,
-                        uid: user.uid,
-                        userName: user.displayName,
-                        image: user.photoURL,
-                        favorites: [],
-                        isLogged: true
-                    })
-                );
-            })
-            .catch((err) => {
-                alert(err);
-            });
+        dispatch(signWithPassword({ email, password }))
     };
 
     const SignWithGoolge = async (e) => {
         e.preventDefault();
+        dispatch(signInWithGooglePopup())
+            .then(({ payload }: any) => {
 
-        await signInWithGooglePopup()
-            .then(({ user }) => {
-                dispatch(
-                    login({
-                        email: user.email,
-                        uid: user.uid,
-                        userName: user.displayName,
-                        image: user.photoURL,
-                        favorites: [],
-                        isLogged: true
-                    })
-                );
-                createUserDocumentFromAuth(user, { favorites: [] })
+                const { displayName, email, uid, photoURL } = payload;
+
+                const authenticatedUser = {
+                    uid: uid,
+                    email: email,
+                    displayName: displayName,
+                    photoURL: photoURL,
+                    favorites: [],
+                    isLogged: true,
+                };
+
+                dispatch(createUserDocumentFromAuth(authenticatedUser))
             })
-            .catch((err) => {
-                alert(err);
-            });;
     }
 
     return (

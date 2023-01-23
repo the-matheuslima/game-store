@@ -17,14 +17,16 @@
         }
     }
 
-    &__input-box {
+    &__input-search {
         flex: 1;
 
         input {
-            width: 47%;
+            border: none;
+            width: 100%;
             outline: none;
             height: 30px;
             padding: 8px;
+            border-radius: 10px;
 
             @include tablet {
                 width: 60%;
@@ -34,6 +36,24 @@
                 width: 80%;
             }
         }
+    }
+    &__input-box {
+        border-radius: 10px;
+        background: #fff;
+        width: 50%;
+        // 100%
+
+        @include flex(center, space-between);
+        justify-content: flex-end;
+        flex-wrap: nowrap;
+
+        @include tablet {
+            width: 64%;
+        }
+
+        @include mobile {
+            width: 91%;
+        }
 
         button {
             cursor: pointer;
@@ -42,8 +62,13 @@
             padding: 7px 8px;
             background-color: unset;
             border-radius: 3px;
-            background-color: $a3-hex;
-            max-height: 30px;
+            height: 30px;
+
+            svg {
+                width: 15px;
+                height: 15px;
+                color: $a1-hex;
+            }
         }
     }
 

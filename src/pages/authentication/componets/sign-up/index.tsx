@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { auth, createUserDocumentFromAuth, createUserWithEmailPassword } from "../../../../service/firebase/firebase";
-import { login } from "../../../../store/auth/auth";
+import { createUserWithPasswordAndEmail } from "../../../../store/auth/auth";
+import { AppDispatch } from "../../../../store/store";
 
 import './style.scss'
 
@@ -12,12 +12,12 @@ function SignUp({ }: Props) {
         displayName: '',
         email: '',
         password: '',
-        image: '',
+        confirmPassword: ''
     }
 
     const [formFields, setFormFields] = useState(defaultFormFields);
-    const { displayName, email, password } = formFields;
-    const dispatch = useDispatch();
+    const { displayName, email, password, confirmPassword } = formFields;
+    const dispatch = useDispatch<AppDispatch>();
 
 
     const handleChange = (event) => {
@@ -27,24 +27,9 @@ function SignUp({ }: Props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (password !== confirmPassword) return alert('Password incorrect')
 
-        createUserWithEmailPassword(auth, email, password)
-            .then((userAuth) => {
-                dispatch(
-                    login({
-                        uid: userAuth.user.uid,
-                        email: userAuth.user.email,
-                        userName: userAuth.user.displayName,
-                        image: '',
-                        favorites: [],
-                        isLogged: true
-                    })
-                )
-                createUserDocumentFromAuth(userAuth.user, { favorites: [] })
-            })
-            .catch((error) => {
-                alert(error);
-            });
+        dispatch(createUserWithPasswordAndEmail({ email, password, displayName }))
     }
 
     return (
@@ -52,16 +37,17 @@ function SignUp({ }: Props) {
             <h2 className="sign-up__title">Dont't have an account?</h2>
             <p>Sign up With your email and password</p>
 
-            <form onSubmit={(event) => handleSubmit(event)} className='sign-up__form'>
+            <form onSubmit={(event) => { handleSubmit(event) }} className='sign-up__form'>
                 <div className="input-box">
-                    <input className="input" type="text" name="displayName" placeholder="Display Name" value={displayName} onChange={handleChange} />
-                    <input className="input" type="email" name="email" placeholder="Email" value={email} onChange={handleChange} />
-                    <input className="input" type="password" name="password" placeholder="Password" value={password} onChange={handleChange} />
+                    <input className="input" type="text" name="displayName" placeholder="Display Name" value={displayName} required onChange={handleChange} />
+                    <input className="input" type="email" name="email" placeholder="Email" value={email} required onChange={handleChange} />
+                    <input className="input" type="password" name="password" placeholder="Password" required value={password} onChange={handleChange} />
+                    <input className="input" type="password" name="confirmPassword" placeholder="confirm password" required value={confirmPassword} onChange={handleChange} />
                 </div>
 
-                <p onClick={(event) => handleSubmit(event)}>
+                <button type="submit">
                     Sign up
-                </p>
+                </button>
             </form>
         </section>
     );

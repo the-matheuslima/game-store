@@ -15,8 +15,6 @@
 
 <img src='./src/assets/image/screenshot.png' alt='screenshot'/>
 
-<video src='./src/assets/video/game-video.mp4' controls/>
-
 <h2>🧾Descrição</h2>
 
 <blockquote >
