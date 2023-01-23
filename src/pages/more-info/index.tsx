@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { api } from "../../service/api/api";
 import DetalinsHead from "./component/detalins-head";
 import './style.scss'
-import { Games } from '../../types/games'
+import { Games } from '../../interface/games'
 import CarouselGames from "../../components/carouselGames";
 import GameList from "../../components/game-list";
 import Loading from "../../components/loading";

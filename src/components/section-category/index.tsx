@@ -1,5 +1,5 @@
 import React from "react";
-import { Games } from "../../types/games";
+import { Games } from "../../interface/games";
 import CarouselGames from "../carouselGames";
 import GameList from "../game-list";
 

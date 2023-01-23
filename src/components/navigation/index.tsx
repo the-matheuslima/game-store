@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { createSearchParams, Link, useNavigate, useSearchParams } from 'react-router-dom';
 
-import { Games } from '../../types/games';
+import { Games } from '../../interface/games';
 import { api } from '../../service/api/api';
 
 import { GiMagnifyingGlass } from 'react-icons/gi'

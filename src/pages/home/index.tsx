@@ -6,7 +6,7 @@ import SectionCategory from "../../components/section-category";
 import Loading from "../../components/loading";
 
 import { api } from "../../service/api/api";
-import { Games } from "../../types/games";
+import { Games } from "../../interface/games";
 
 import './style.scss'
 

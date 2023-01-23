@@ -4,7 +4,7 @@ import Loading from "../../components/loading";
 import Filter from "../../components/filter";
 
 import { api } from "../../service/api/api";
-import { Games } from "../../types/games";
+import { Games } from "../../interface/games";
 
 import { genresList } from "../../utils/genres-list";
 import { useSearchParams } from "react-router-dom";

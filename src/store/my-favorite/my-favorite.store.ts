@@ -1,7 +1,7 @@
 import { createSlice, current, PayloadAction } from '@reduxjs/toolkit';
 import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { auth, db } from '../../service/firebase/firebase';
-import { favorite } from '../../types/games';
+import { favorite } from '../../interface/games';
 
 const store = createSlice({
 	name: 'Myfavorites',

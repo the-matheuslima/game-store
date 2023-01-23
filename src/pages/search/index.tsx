@@ -5,7 +5,7 @@ import CardGame from "../../components/card-game";
 import Loading from "../../components/loading";
 
 import { api } from "../../service/api/api";
-import { Games } from "../../types/games";
+import { Games } from "../../interface/games";
 
 import './style.scss'
 

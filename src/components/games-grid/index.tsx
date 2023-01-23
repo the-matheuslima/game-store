@@ -1,7 +1,7 @@
 import { MdStarRate } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import './style.scss';
-import { Games } from '../../types/games'
+import { Games } from '../../interface/games'
 import moment from 'moment';
 
 type TGames = {
