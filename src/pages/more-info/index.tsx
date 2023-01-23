@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { api } from "../../service/api/api";
 import DetalinsHead from "./component/detalins-head";
 import './style.scss'

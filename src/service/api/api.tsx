@@ -55,6 +55,7 @@ export const api = {
         const url = `games/${id}/achievements?key=${import.meta.env.VITE_API_KEY}`
         return await axiosClient.get(url);
     },
+
     getListDlc: async (id: string | undefined) => {
         const url = `games/${id}/parent-games?key=${import.meta.env.VITE_API_KEY}&ordering=-added`;
         return await axiosClient.get(url);

@@ -1,5 +1,5 @@
 const apiConfig = {
-    baseUrl: 'https://rawg-video-games-database.p.rapidapi.com/',
+    baseUrl: 'https://api.rawg.io/api/',
 }
 
 export default apiConfig;
